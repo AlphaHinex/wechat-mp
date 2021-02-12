@@ -86,7 +86,8 @@ let baseByDays = function(key) {
     if (followers.has(key)) {
         return (new Date(2021, 1, 14).getTime() - followers.get(key).getTime()) / 1000 / 60 / 60 / 24 / 10;
     } else {
-        return 0;
+        //return 0;
+        return (new Date(2021, 1, 14).getTime() - Date.now()) / 1000 / 60 / 60 / 24 / 10;
     }
 };
 
@@ -171,15 +172,19 @@ var onReq = function(req, res) {
                         res.end();
                     } else {
                         res.setHeader('Content-Type', req.headers['content-type']);
-                        res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], content + ", you said."));
+                        //res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], content + ", you said."));
+                        res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], "抽奖口令为，带“牛”字四字祝福。"));
                         res.end();
                     }
                 } else if (result && result.xml && result.xml.MsgType) {
                     res.setHeader('Content-Type', req.headers['content-type']);
-                    res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], "Not support yet."));
+                    //res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], "Not support yet."));
+                    res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], "大年初三（2月14日）开启抽红包，开始时会群发消息通知，敬请关注。"));
                     res.end();
                 } else {
-                    res.setHeader('Content-Type', req.headers['content-type']);
+                    if (req.headers['content-type']) {
+                        res.setHeader('Content-Type', req.headers['content-type']);
+                    }
                     res.write(data);
                     res.end();
                 }
