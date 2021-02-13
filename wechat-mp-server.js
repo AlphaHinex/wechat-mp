@@ -81,6 +81,15 @@ followers.set('ounM4v7dF6suDVlzYiiKnzL6Kprk', new Date(2021, 0, 28));
 followers.set('ounM4v0t3mMghc24ZoRaEnXH-pK8', new Date(2021, 0, 31));
 
 followers.set('ounM4v0RdbW2UHbhlKZYqlttE6wA', new Date(2021, 1, 11));
+followers.set('ounM4vyasTOovpH2FMOv_7gSATXI', new Date(2021, 1, 11));
+followers.set('ounM4v_OKd-vyl8MyGz56nMiBbYE', new Date(2021, 1, 11));
+followers.set('ounM4v0TELIDP62FjiYyKraVTrPs', new Date(2021, 1, 11));
+followers.set('ounM4v2itTxl-WgxRzoPojnDlNMY', new Date(2021, 1, 11));
+followers.set('ounM4v5Xhi-2HX2CFBU-X32mdYK8', new Date(2021, 1, 11));
+followers.set('ounM4v0er1M8RzjvAgAgBCxuNhlQ', new Date(2021, 1, 11));
+followers.set('ounM4v7yuOou12WUT38gQMumYHhk', new Date(2021, 1, 11));
+followers.set('ounM4vzd7BcmPinqhxaoBCPuTgXw', new Date(2021, 1, 11));
+followers.set('ounM4vyXJhnP9cJ0KBh1MRpj3fbU', new Date(2021, 1, 11)); // 大白才
 
 let used = new Map();
 
