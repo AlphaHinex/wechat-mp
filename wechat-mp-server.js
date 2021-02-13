@@ -80,6 +80,8 @@ followers.set('ounM4v5sDYDSAaXvuyxchfNYfFPY', new Date(2021, 0, 25));
 followers.set('ounM4v7dF6suDVlzYiiKnzL6Kprk', new Date(2021, 0, 28));
 followers.set('ounM4v0t3mMghc24ZoRaEnXH-pK8', new Date(2021, 0, 31));
 
+followers.set('ounM4v0RdbW2UHbhlKZYqlttE6wA', new Date(2021, 1, 11));
+
 let used = new Map();
 
 let baseByDays = function(key) {
