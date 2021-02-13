@@ -112,7 +112,7 @@ let lot = function (key, word) {
             used.set(key, bonus);
             console.debug(new Date());
             console.debug(used);
-            return '【此消息为演示所用，正式抽奖将在大年初三开启，具体时间取决于几点起床😂，敬请期待】恭喜您获得 ' + bonus + ' 元支付宝口令红包！口令将稍后通过公众号发放，请耐心等候并注意查收。祝您 2021 年' + randomWord(goodWords) + '!';
+            return '恭喜您获得 ' + bonus + ' 元支付宝口令红包！口令将稍后通过公众号发放，请耐心等候并注意查收。祝您 2021 年' + randomWord(goodWords) + '!';
         }
     }
     return '祝您 2021 年' + randomWord(words) + '!【此消息内容为从大家的抽奖口令中随机生成，若出现一些奇奇怪怪的词语，切莫当真】';
@@ -173,7 +173,7 @@ var onReq = function(req, res) {
                         res.end();
                     } else {
                         res.setHeader('Content-Type', req.headers['content-type']);
-                        res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], content + ", you said.【抽奖口令为，带“牛”字四字祝福。】"));
+                        res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], content + ", you said."));
                         res.end();
                     }
                 } else if (result && result.xml && result.xml.MsgType && result.xml.MsgType[0] === 'event') {
@@ -189,7 +189,7 @@ var onReq = function(req, res) {
                     res.end();
                 } else if (result && result.xml && result.xml.MsgType) {
                     res.setHeader('Content-Type', req.headers['content-type']);
-                    res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], "Not support yet.【抽奖口令为，带“牛”字四字祝福。】"));
+                    res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], "Not support yet."));
                     res.end();
                 } else {
                     if (req.headers['content-type']) {
