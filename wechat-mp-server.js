@@ -89,13 +89,59 @@ followers.set('ounM4v5Xhi-2HX2CFBU-X32mdYK8', new Date(2021, 1, 11));
 followers.set('ounM4v0er1M8RzjvAgAgBCxuNhlQ', new Date(2021, 1, 11));
 followers.set('ounM4v7yuOou12WUT38gQMumYHhk', new Date(2021, 1, 11));
 followers.set('ounM4vzd7BcmPinqhxaoBCPuTgXw', new Date(2021, 1, 11));
-followers.set('ounM4vyXJhnP9cJ0KBh1MRpj3fbU', new Date(2021, 1, 11)); // 大白才
+followers.set('ounM4vyXJhnP9cJ0KBh1MRpj3fbU', new Date(2021, 1, 11));
+followers.set('ounM4vwDLlUID9nBMBQjMppCPyO0', new Date(2021, 1, 11));
+followers.set('ounM4vwqIhC8_LsBhV_MJM49K2zY', new Date(2021, 1, 11));
+
+followers.set('ounM4v4ecQW2LKOqmcgdfpssYO_Q', new Date(2021, 1, 12));
+followers.set('ounM4vwCzWJJMExAIVl6HB6nFquY', new Date(2021, 1, 12));
+followers.set('ounM4vw4JdSUCz7B1WDEfe13FcOs', new Date(2021, 1, 12));
+followers.set('ounM4v1mj-PslR0ZfwXv1PQQExe4', new Date(2021, 1, 12));
+followers.set('ounM4vxfX5oxm2Ed2x8X-2CFIn-A', new Date(2021, 1, 12));
+followers.set('ounM4vyrymg8WmWfQkLdRO3cVucE', new Date(2021, 1, 12));
+followers.set('ounM4v9QFd9gg-tbpkI3zR5_gIpA', new Date(2021, 1, 12));
+followers.set('ounM4vwON4GXjX2Yb4ZZ9zv0t9js', new Date(2021, 1, 12));
+followers.set('ounM4v3JtVMIx4saAnIYAUIxgg0U', new Date(2021, 1, 12));
+followers.set('ounM4vysoPibvdddTb9JGViSu_d4', new Date(2021, 1, 12));
+followers.set('ounM4v5F9fiJYJGhiYHf6hQ_lo_c', new Date(2021, 1, 12));
+followers.set('ounM4v3j-PPFZ8it-v9cwHt4Qejg', new Date(2021, 1, 12));
+followers.set('ounM4vwDY3mTH9pHVlhhUZqshteg', new Date(2021, 1, 12));
+followers.set('ounM4vwZ7F4u6ja6fg7RfjAC0Y8A', new Date(2021, 1, 12));
+followers.set('ounM4vwkaT0hkQjfqajYAGpE733s', new Date(2021, 1, 12));
+followers.set('ounM4vzwBshhGX6IOoNszzMEwUeo', new Date(2021, 1, 12));
+followers.set('ounM4vwuCNgeX2FZCOZW8DP4plVg', new Date(2021, 1, 12));
+followers.set('ounM4v8Qd2l8UcNB6R7G1XKJU7GA', new Date(2021, 1, 12));
+followers.set('ounM4v3p31hh1ZiSdvUFhULLTvs4', new Date(2021, 1, 12));
+followers.set('ounM4v-RgSJJpucDBYbB4lkkGnm4', new Date(2021, 1, 12));
+
+followers.set('ounM4v-KdvOjjO27iShIsnfOGEsg', new Date(2021, 1, 13));
+followers.set('ounM4v3H0PbbSit7Rma5Q0UU7XEQ', new Date(2021, 1, 13));
+followers.set('ounM4vzxEfo28M39MTXj7mlaldaU', new Date(2021, 1, 13));
+followers.set('ounM4v55AFuD6MIcSkx0zUVxxJzQ', new Date(2021, 1, 13));
+followers.set('ounM4vxtPFtk2ZER-FEhp0eJ0lVs', new Date(2021, 1, 13));
+followers.set('ounM4v-mGI3W2RPyjUVyOdv1rUhw', new Date(2021, 1, 13));
+followers.set('ounM4v5QzwfFLpAUfbTdu7NaousQ', new Date(2021, 1, 13));
+followers.set('ounM4vxVS0mvZLJtnRqSdL9MMYwg', new Date(2021, 1, 13));
+followers.set('ounM4v_MLAv6sdGZ1DkszQV5z5EA', new Date(2021, 1, 13));
+followers.set('ounM4v7zD3V47VQzP95znqowIAp8', new Date(2021, 1, 13));
+followers.set('ounM4vySp3Y5hsT8Yau50-usL1q0', new Date(2021, 1, 13));
+followers.set('ounM4v2q-IcHvkbDNM-Xc-f5bBaw', new Date(2021, 1, 13));
+followers.set('ounM4v607btqKo71pq3cffWtP6cM', new Date(2021, 1, 13));
+followers.set('ounM4v2PuMBwR4YyZq3hyUjpkPlM', new Date(2021, 1, 13));
+followers.set('ounM4v5K6h_qvSA_uIV_jvPrD4r8', new Date(2021, 1, 13));
+followers.set('ounM4v5XbIwrZkuKAY4g1yRNpNpU', new Date(2021, 1, 13));
+followers.set('ounM4v-LHB5RqizU3WWz3m0eFpFE', new Date(2021, 1, 13));
+followers.set('ounM4vyr9H_IAQIUVFhzvA8qeMsc', new Date(2021, 1, 13));
+followers.set('ounM4v6JxLYXKPNSA3NywLFUhVgs', new Date(2021, 1, 13));
+followers.set('ounM4v0VB7qtUZn9kmvqD75E5oAs', new Date(2021, 1, 13));
+followers.set('ounM4vx-N0Usm86YfLegz6LTd4Kk', new Date(2021, 1, 13));
+followers.set('ounM4v5Q0tmDDWsbHeaTiJ2B-SMU', new Date(2021, 1, 13));
 
 let used = new Map();
 
 let baseByDays = function(key) {
     if (followers.has(key)) {
-        return (new Date(2021, 1, 14).getTime() - followers.get(key).getTime()) / 1000 / 60 / 60 / 24 / 10;
+        return (new Date(2021, 1, 15).getTime() - followers.get(key).getTime()) / 1000 / 60 / 60 / 24 / 10;
     } else {
         return (new Date(2021, 1, 15).getTime() - Date.now()) / 1000 / 60 / 60 / 24 / 10;
     }
@@ -126,7 +172,7 @@ let lot = function (key, word) {
             return '恭喜您获得 ' + bonus + ' 元支付宝口令红包！口令将稍后通过公众号发放，请耐心等候并注意查收。祝您 2021 年' + randomWord(goodWords) + '!';
         }
     }
-    return '祝您 2021 年' + randomWord(words) + '!【此消息内容为从大家的抽奖口令中随机生成，若出现一些奇奇怪怪的词语，切莫当真】';
+    return '每人仅一次机会。祝您 2021 年' + randomWord(words) + '!【此消息内容为从大家的抽奖口令中随机生成，若出现一些奇奇怪怪的词语，切莫当真】';
 };
 
 var onReq = function(req, res) {
