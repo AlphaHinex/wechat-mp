@@ -80,14 +80,13 @@ followers.set('ounM4v5sDYDSAaXvuyxchfNYfFPY', new Date(2021, 0, 25));
 followers.set('ounM4v7dF6suDVlzYiiKnzL6Kprk', new Date(2021, 0, 28));
 followers.set('ounM4v0t3mMghc24ZoRaEnXH-pK8', new Date(2021, 0, 31));
 
-let used = new Set();
+let used = new Map();
 
 let baseByDays = function(key) {
     if (followers.has(key)) {
         return (new Date(2021, 1, 14).getTime() - followers.get(key).getTime()) / 1000 / 60 / 60 / 24 / 10;
     } else {
-        //return 0;
-        return (new Date(2021, 1, 14).getTime() - Date.now()) / 1000 / 60 / 60 / 24 / 10;
+        return (new Date(2021, 1, 15).getTime() - Date.now()) / 1000 / 60 / 60 / 24 / 10;
     }
 };
 
@@ -107,13 +106,15 @@ let randomWord = function (array) {
 let lot = function (key, word) {
     words.push(word);
     console.debug(words);
-    // if (!used.has(key)) {
-    //     used.add(key);
+    if (!used.has(key)) {
         let bonus = (Math.abs(Math.sin((key + word).hashCode() + Date.now() * Math.random())) * baseByDays(key)).toFixed(2);
         if (bonus > 0) {
+            used.set(key, bonus);
+            console.debug(new Date());
+            console.debug(used);
             return '【此消息为演示所用，正式抽奖将在大年初三开启，具体时间取决于几点起床😂，敬请期待】恭喜您获得 ' + bonus + ' 元支付宝口令红包！口令将稍后通过公众号发放，请耐心等候并注意查收。祝您 2021 年' + randomWord(goodWords) + '!';
         }
-    // }
+    }
     return '祝您 2021 年' + randomWord(words) + '!【此消息内容为从大家的抽奖口令中随机生成，若出现一些奇奇怪怪的词语，切莫当真】';
 };
 
@@ -172,14 +173,23 @@ var onReq = function(req, res) {
                         res.end();
                     } else {
                         res.setHeader('Content-Type', req.headers['content-type']);
-                        //res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], content + ", you said."));
-                        res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], "抽奖口令为，带“牛”字四字祝福。"));
+                        res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], content + ", you said.【抽奖口令为，带“牛”字四字祝福。】"));
                         res.end();
                     }
+                } else if (result && result.xml && result.xml.MsgType && result.xml.MsgType[0] === 'event') {
+                    let welcome = "欢迎关注 AlphaHinex !\r\n";
+                    welcome += "本公众号为 IT 技术主题公众号。\r\n";
+                    welcome += "自动回复内容包括：\r\n";
+                    welcome += "1. 关注时回复欢迎消息\r\n";
+                    welcome += "2. 回声功能：对任何发送给公众号的文本消息，回复 “<发送内容>, you said.”；其他类型的消息回复 “Not support yet.”\r\n";
+                    welcome += "3. 十大 Hacker News：发送 hn 关键字，不区分大小写，回复当时 Hacker News RSS 中的前十条内容\r\n";
+                    welcome += "4. 抽奖：发送带“牛”字的四字消息，抽取随机金额支付宝口令红包。大年初三（2月14日）正式开启，敬请关注。";
+                    res.setHeader('Content-Type', req.headers['content-type']);
+                    res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], welcome));
+                    res.end();
                 } else if (result && result.xml && result.xml.MsgType) {
                     res.setHeader('Content-Type', req.headers['content-type']);
-                    //res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], "Not support yet."));
-                    res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], "大年初三（2月14日）开启抽红包，开始时会群发消息通知，敬请关注。"));
+                    res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], "Not support yet.【抽奖口令为，带“牛”字四字祝福。】"));
                     res.end();
                 } else {
                     if (req.headers['content-type']) {
