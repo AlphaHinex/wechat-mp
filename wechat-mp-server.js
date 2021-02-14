@@ -40,9 +40,12 @@ let onReq = function (req, res) {
                             handler = require('./scripts/echo');
                         }
                     }
-                    res.setHeader('Content-Type', req.headers['content-type']);
-                    res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], handler.response(content, fromUser)));
-                    res.end();
+                    handler.envelop = (msg) => {
+                        res.setHeader('Content-Type', req.headers['content-type']);
+                        res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], msg));
+                        res.end();
+                    };
+                    handler.response(content, fromUser);
                 } else if (result && result.xml && result.xml.MsgType && result.xml.MsgType[0] === 'event') {
                     let welcome = "欢迎关注 AlphaHinex !\r\n";
                     welcome += "本公众号为 IT 技术主题公众号。\r\n";

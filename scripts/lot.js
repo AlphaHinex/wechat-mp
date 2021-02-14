@@ -49,5 +49,5 @@ let lot = function (key, word) {
 };
 
 handler.response = (msg, fromUser) => {
-    return lot(fromUser, msg);
+    handler.envelop(lot(fromUser, msg));
 };
