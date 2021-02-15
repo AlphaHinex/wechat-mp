@@ -15,6 +15,12 @@
     
 调试时，可参照 [内网穿透？试试 ngrok](https://alphahinex.github.io/2021/02/06/ngrok/) 中内容，使用 ngrok 将本地 8080 端口映射至外网地址，即可在 微信公众平台接口调试工具 中，调试本地服务。
 
+或直接在本地，发送请求调试，如：
+
+```bash
+$ curl http://localhost:8080 -d '<xml><FromUserName>abc</FromUserName><ToUserName>def</ToUserName><MsgType>text</MsgType><Content>abc</Content></xml>'
+```
+
 服务端运行
 ---------
 
