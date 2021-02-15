@@ -10,7 +10,7 @@ handler.response = (msg) => {
             let res = 'Search results:';
             results.forEach(result => {
                 res += '\r\n\r\n' + result.title;
-                res += '\r\n' + result.href;
+                res += '\r\n' + result.link;
                 res += '\r\n' + result.snippet;
             });
             handler.envelop(res);
