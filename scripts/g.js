@@ -6,6 +6,7 @@ const handler = module.exports = {};
 handler.response = (msg) => {
     if (msg.startsWith('g ') || msg.startsWith('G ')) {
         googleIt({'query': msg.substr(2)}).then(results => {
+            console.debug(results);
             // access to results object here
             let res = 'Search results:';
             results.forEach(result => {
@@ -15,6 +16,7 @@ handler.response = (msg) => {
             });
             handler.envelop(res);
         }).catch(e => {
+            console.error(e);
             // any possible errors that might have occurred (like no Internet connection)
         });
     }
