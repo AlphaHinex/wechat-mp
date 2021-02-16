@@ -11,7 +11,7 @@ const options = {
 
 handler.response = (msg) => {
     if (msg.startsWith('g ') || msg.startsWith('G ')) {
-        googleIt({'query': msg.substr(2), 'disableConsole': true, limit: 5}).then(results => {
+        googleIt({options, 'query': msg.substr(2), 'disableConsole': true, limit: 5}).then(results => {
             // access to results object here
             let res = 'Search results:';
             results.forEach(result => {
