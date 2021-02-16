@@ -30,12 +30,14 @@ let onReq = function (req, res) {
                     const content = result.xml.Content[0];
                     const prefix = content.split(' ')[0].toLowerCase();
                     const fromUser = result.xml.FromUserName[0];
-                    let handler = {};
+                    let handler;
                     try {
                         handler = require('./scripts/' + prefix);
                     } catch (err) {
                         if (content.length === 4 && content.indexOf('牛') > -1) {
                             handler = require('./scripts/lot');
+                        } else if (content.length === 1 && /[\u4e00-\u9fa5]/.test(content)) {
+                            handler = require('./scripts/bishun');
                         } else {
                             handler = require('./scripts/echo');
                         }
@@ -109,4 +111,4 @@ let buildTextMsg = function (from, to, content) {
     return resp;
 };
 
-http.createServer(onReq).listen(8080);
+http.createServer(onReq).listen(process.env.PORT || 8080);
