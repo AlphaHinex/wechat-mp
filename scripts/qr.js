@@ -14,17 +14,15 @@ handler.response = (msg) => {
                 console.debug(data);
                 const addUrl = 'https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=' + token;
                 const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Length': data.byteLength
-                    }
+                    method: 'POST'
                 };
                 const req = https.request(addUrl, options, (res) => {
                     let addRes = ''
                     res.on('data', (buf) => addRes += buf.toString());
                     res.on('end', () => {
-                        const json = JSON.parse(addRes.toString());
-                        console.debug("Add media response: " + json);
+                        console.debug('On end: ' + addRes);
+                        // const json = JSON.parse(addRes.toString());
+                        // console.debug("Add media response: " + json);
                     });
                 });
                 req.write(data);
