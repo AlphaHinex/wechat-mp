@@ -110,5 +110,17 @@ let buildTextMsg = function (from, to, content) {
     console.debug("Response with %j", resp);
     return resp;
 };
+let buildImageMsg = function (from, to, mediaId) {
+    let obj = {xml: {
+            ToUserName: to,
+            FromUserName: from,
+            CreateTime: new Date().getTime(),
+            MsgType: 'image',
+            Image: {MediaId: mediaId}
+        }};
+    let resp = builder.buildObject(obj);
+    console.debug("Response with %j", resp);
+    return resp;
+};
 
 http.createServer(onReq).listen(process.env.PORT || 8080);
