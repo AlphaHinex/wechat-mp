@@ -11,7 +11,6 @@ handler.response = (msg) => {
         util.getAccessToken().then((token) => {
             console.debug('Token: ' + token);
             util.fetch(url).then((data) => {
-                console.debug(data);
                 const addUrl = 'https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=' + token;
                 const options = {
                     method: 'POST',
