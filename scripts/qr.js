@@ -37,7 +37,11 @@ handler.response = (msg) => {
                             delForm.append('media_id', json.media_id);
                             delForm.append('access_token', token);
                             form.submit('https://api.weixin.qq.com/cgi-bin/material/del_material', (err, res) => {
-                                res.resume();
+                                let delRes = ''
+                                res.on('data', (buf) => delRes += buf.toString());
+                                res.on('end', () => {
+                                    console.debug(`del res: ${delRes}`);
+                                });
                             });
                         } catch (e) {
                             console.error(e);
