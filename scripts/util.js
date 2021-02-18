@@ -23,17 +23,18 @@ util.getAccessToken = () => new Promise((resolve, reject) => {
     console.debug(`util.expireAt: ${expireAt}`);
     if (token && Date.now() < expireAt) {
         resolve(token);
+    } else {
+        const url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
+        util.fetch(url).then((rawData) => {
+            try {
+                const json = JSON.parse(rawData.toString());
+                console.debug(json);
+                token = json.access_token;
+                expireAt = Date.now() + json.expires_in * 1000;
+                resolve(token);
+            } catch (e) {
+                console.error(e.message);
+            }
+        });
     }
-    const url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
-    util.fetch(url).then((rawData) => {
-        try {
-            const json = JSON.parse(rawData.toString());
-            console.debug(json);
-            token = json.access_token;
-            expireAt = Date.now() + json.expires_in * 1000;
-            resolve(token);
-        } catch (e) {
-            console.error(e.message);
-        }
-    })
 });
