@@ -35,12 +35,16 @@ handler.response = (msg) => {
                             handler.envelop(json.media_id, 'image');
 
                             const postData = JSON.stringify({
-                                'media_id': '_1jNQSrK1dpX6gjlz5KrtWiSQcJhV5fiitFTg0nEob0',
+                                'media_id': json.media_id,
                                 'access_token': token
                             });
-                            console.debug(postData);
-                            const delUrl = 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token;
-                            const req = https.request(delUrl,{ method: 'POST' }, (res) => {
+                            const options = {
+                                method: 'POST',
+                                contentType: 'application/json',
+                                url: 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token,
+                                rejectUnauthorized: false
+                            };
+                            const req = https.request(options, (res) => {
                                 console.log(`STATUS: ${res.statusCode}`);
                                 console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                                 let delRes = '';
@@ -49,11 +53,6 @@ handler.response = (msg) => {
                                     console.debug(`del res: ${delRes}`);
                                 });
                             });
-
-                            req.on('error', (e) => {
-                                console.error(`problem with request: ${e.message}`);
-                            });
-
                             // Write data to request body
                             req.write(postData);
                             req.end();
