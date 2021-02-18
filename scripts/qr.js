@@ -33,6 +33,12 @@ handler.response = (msg) => {
                         const json = JSON.parse(addRes.toString());
                         try {
                             handler.envelop(json.media_id, 'image');
+                            let delForm = new FormData();
+                            delForm.append('media_id', json.media_id);
+                            delForm.append('access_token', token);
+                            form.submit('https://api.weixin.qq.com/cgi-bin/material/del_material', (err, res) => {
+                                res.resume();
+                            });
                         } catch (e) {
                             console.error(e);
                         }
