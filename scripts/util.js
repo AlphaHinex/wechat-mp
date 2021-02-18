@@ -19,6 +19,8 @@ util.fetch = (url) => new Promise((resolve, reject) => {
 });
 
 util.getAccessToken = () => new Promise((resolve, reject) => {
+    console.debug(`util.token: ${token}`);
+    console.debug(`util.expireAt: ${expireAt}`);
     if (token && Date.now() < expireAt) {
         resolve(token);
     }

@@ -18,6 +18,7 @@ handler.response = (msg) => {
 
                 form.submit(addUrl, function(err, res) {
                     // res – response object (http.IncomingMessage)  //
+                    console.log(`add url: ${addUrl}`);
                     console.log(`STATUS: ${res.statusCode}`);
                     console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                     let addRes = ''
