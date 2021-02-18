@@ -16,8 +16,8 @@ handler.response = (msg) => {
                 let form = new FormData();
                 form.append('media', data, {
                     filename: 'test.jpg',
-                    filelength: data.length,
-                    contentType: 'image/jpeg'
+                    knownLength: data.length,
+                    contentType: 'multipart/form-data;'
                 });
                 form.append('access_token', token);
 
