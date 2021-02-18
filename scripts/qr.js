@@ -35,17 +35,18 @@ handler.response = (msg) => {
                             handler.envelop(json.media_id, 'image');
 
                             const postData = JSON.stringify({
-                                'media_id': json.media_id
+                                'media_id': json.media_id,
+                                'access_token': token
                             });
+                            console.debug(postData);
                             const delUrl = 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token;
                             const req = https.request(delUrl,{ method: 'POST' }, (res) => {
                                 console.log(`STATUS: ${res.statusCode}`);
                                 console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-                                res.on('data', (chunk) => {
-                                    console.log(`BODY: ${chunk}`);
-                                });
+                                let delRes = '';
+                                res.on('data', (buf) => delRes += buf.toString());
                                 res.on('end', () => {
-                                    console.log('No more data in response.');
+                                    console.debug(`del res: ${delRes}`);
                                 });
                             });
 
