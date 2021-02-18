@@ -35,7 +35,7 @@ handler.response = (msg) => {
                             handler.envelop(json.media_id, 'image');
 
                             const postData = JSON.stringify({
-                                'media_id': json.media_id,
+                                'media_id': '_1jNQSrK1dpX6gjlz5KrtWiSQcJhV5fiitFTg0nEob0',
                                 'access_token': token
                             });
                             console.debug(postData);
