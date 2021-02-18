@@ -14,7 +14,10 @@ handler.response = (msg) => {
             https.get(url, {rejectUnauthorized: false}, function(response) {
                 console.debug(`Request ${url}`);
                 let form = new FormData();
-                form.append('media', response);
+                form.append('media', response, {
+                    filename: 'test.jpg',
+                    contentType: 'image/jpeg'
+                });
                 form.append('access_token', token);
                 form.append('type', 'image');
                 const addUrl = 'https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=' + token + '&type=image';
