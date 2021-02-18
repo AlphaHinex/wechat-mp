@@ -31,15 +31,14 @@ handler.response = (msg) => {
                     res.on('end', () => {
                         console.debug(`add res: ${addRes}`);
                         const json = JSON.parse(addRes.toString());
-                        console.debug("Add media response: " + json);
+                        try {
+                            handler.envelop(json.media_id, 'image');
+                        } catch (e) {
+                            console.error(e);
+                        }
                     });
                 });
             });
         });
     }
-    console.debug('before');
-    console.debug('result: ' + util.token);
-    console.debug('after');
-    // TODO
-    handler.envelop('http://bishun.shufaji.com/datafile/zd/bs/');
 };

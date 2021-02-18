@@ -42,9 +42,13 @@ let onReq = function (req, res) {
                             handler = require('./scripts/echo');
                         }
                     }
-                    handler.envelop = (msg) => {
+                    handler.envelop = (msg, type) => {
                         res.setHeader('Content-Type', req.headers['content-type']);
-                        res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], msg));
+                        if (!type || type === 'text') {
+                            res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], msg));
+                        } else if (type === 'image') {
+                            res.write(buildImageMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], msg));
+                        }
                         res.end();
                     };
                     handler.response(content, fromUser);
