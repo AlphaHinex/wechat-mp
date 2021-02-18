@@ -15,7 +15,8 @@ handler.response = (msg) => {
                 console.debug(`Request ${url}`);
                 let form = new FormData();
                 form.append('media', response);
-                // form.append('access_token', token);
+                form.append('access_token', token);
+                form.append('type', 'image');
                 const addUrl = 'https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=' + token + '&type=image';
                 form.submit(addUrl, function(err, res) {
                     // res – response object (http.IncomingMessage)  //
