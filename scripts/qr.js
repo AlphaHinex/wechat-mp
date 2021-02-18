@@ -11,7 +11,7 @@ handler.response = (msg) => {
         util.getAccessToken().then((token) => {
             console.debug('Token: ' + token);
             const url = "https://chart.googleapis.com/chart?chs=178x178&cht=qr&chl=" + encodeURIComponent(msg.substr(3));
-            https.request(url, function(response) {
+            https.get(url, {rejectUnauthorized: false}, function(response) {
                 console.debug(`Request ${url}`);
                 let form = new FormData();
                 form.append('media', response);
