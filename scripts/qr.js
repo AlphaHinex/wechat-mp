@@ -41,10 +41,10 @@ handler.response = (msg) => {
                             const options = {
                                 method: 'POST',
                                 contentType: 'application/json',
-                                url: 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token,
                                 rejectUnauthorized: false
                             };
-                            const req = https.request(options, (res) => {
+                            const delUrl = 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token;
+                            const req = https.request(delUrl, options, (res) => {
                                 console.log(`STATUS: ${res.statusCode}`);
                                 console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                                 let delRes = '';
