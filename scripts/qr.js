@@ -14,7 +14,11 @@ handler.response = (msg) => {
                 const addUrl = 'https://api.weixin.qq.com/cgi-bin/material/add_material?access_token=' + token + '&type=image';
 
                 let form = new FormData();
-                form.append('media', data);
+                form.append('media', data, {
+                    filename: 'test.jpg',
+                    filelength: data.length,
+                    contentType: 'image/jpeg'
+                });
                 form.append('access_token', token);
 
                 form.submit(addUrl, function(err, res) {
