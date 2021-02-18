@@ -33,16 +33,29 @@ handler.response = (msg) => {
                         const json = JSON.parse(addRes.toString());
                         try {
                             handler.envelop(json.media_id, 'image');
-                            let delForm = new FormData();
-                            delForm.append('media_id', json.media_id);
-                            delForm.append('access_token', token);
-                            delForm.submit('https://api.weixin.qq.com/cgi-bin/material/del_material', (err, dm) => {
-                                let delRes = '';
-                                dm.on('data', (buf) => delRes += buf.toString());
-                                dm.on('end', () => {
-                                    console.debug(`del res: ${delRes}`);
-                                });
+
+                            const postData = JSON.stringify({
+                                'media_id': json.media_id
                             });
+                            const delUrl = 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token;
+                            const req = https.request(delUrl,{ method: 'POST' }, (res) => {
+                                console.log(`STATUS: ${res.statusCode}`);
+                                console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+                                // res.on('data', (chunk) => {
+                                //     console.log(`BODY: ${chunk}`);
+                                // });
+                                // res.on('end', () => {
+                                //     console.log('No more data in response.');
+                                // });
+                            });
+
+                            // req.on('error', (e) => {
+                            //     console.error(`problem with request: ${e.message}`);
+                            // });
+
+                            // Write data to request body
+                            req.write(postData);
+                            req.end();
                         } catch (e) {
                             console.error(e);
                         }
