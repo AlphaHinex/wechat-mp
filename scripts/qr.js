@@ -15,6 +15,7 @@ handler.response = (msg) => {
 
                 let form = new FormData();
                 form.append('media', data);
+                form.append('access_token', token);
 
                 form.submit(addUrl, function(err, res) {
                     // res – response object (http.IncomingMessage)  //
