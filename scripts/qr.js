@@ -40,7 +40,6 @@ handler.response = (msg) => {
                                 hostname: 'api.weixin.qq.com',
                                 path: '/cgi-bin/material/del_material?access_token=' + token,
                                 method: 'POST',
-                                contentType: 'application/json',
                                 rejectUnauthorized: false
                             };
                             const delUrl = 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token;
