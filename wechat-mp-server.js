@@ -42,9 +42,13 @@ let onReq = function (req, res) {
                             handler = require('./scripts/echo');
                         }
                     }
-                    handler.envelop = (msg) => {
+                    handler.envelop = (msg, type) => {
                         res.setHeader('Content-Type', req.headers['content-type']);
-                        res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], msg));
+                        if (!type || type === 'text') {
+                            res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], msg));
+                        } else if (type === 'image') {
+                            res.write(buildImageMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], msg));
+                        }
                         res.end();
                     };
                     handler.response(content, fromUser);
@@ -105,6 +109,18 @@ let buildTextMsg = function (from, to, content) {
             CreateTime: new Date().getTime(),
             MsgType: 'text',
             Content: content
+        }};
+    let resp = builder.buildObject(obj);
+    console.debug("Response with %j", resp);
+    return resp;
+};
+let buildImageMsg = function (from, to, mediaId) {
+    let obj = {xml: {
+            ToUserName: to,
+            FromUserName: from,
+            CreateTime: new Date().getTime(),
+            MsgType: 'image',
+            Image: {MediaId: mediaId}
         }};
     let resp = builder.buildObject(obj);
     console.debug("Response with %j", resp);

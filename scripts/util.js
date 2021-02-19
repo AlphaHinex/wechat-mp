@@ -1,34 +1,40 @@
 'use strict';
 
 const https = require('https');
+
 const util = module.exports = {};
+
 const APPID = process.env.APPID;
 const APPSECRET = process.env.APPSECRET;
+
 let token = '';
 let expireAt = 0;
 
-util.getAccessToken = function () {
-    if (token && Date.now() < expireAt) {
-        return token;
-    }
-    const url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
+util.fetch = (url) => new Promise((resolve, reject) => {
     https.get(url, {rejectUnauthorized: false}, (res) => {
-        const { statusCode } = res;
-        if (statusCode !== 200) {
-            console.error(statusCode);
-        }
-        let rawData = '';
-        res.on('data', (chunk) => { rawData += chunk; });
-        res.on('end', () => {
+        let data = Buffer.alloc(0);
+        res.on('end', () => resolve(data));
+        res.on('data', (buf) => data += buf);
+    }).on('error', e => reject(e));
+});
+
+util.getAccessToken = () => new Promise((resolve, reject) => {
+    console.debug(`util.token: ${token}`);
+    console.debug(`util.expireAt: ${expireAt}`);
+    if (token && Date.now() < expireAt) {
+        resolve(token);
+    } else {
+        const url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + APPID + '&secret=' + APPSECRET;
+        util.fetch(url).then((rawData) => {
             try {
-                const json = JSON.parse(rawData);
+                const json = JSON.parse(rawData.toString());
                 console.debug(json);
                 token = json.access_token;
                 expireAt = Date.now() + json.expires_in * 1000;
-                return token;
+                resolve(token);
             } catch (e) {
                 console.error(e.message);
             }
         });
-    });
-};
+    }
+});
