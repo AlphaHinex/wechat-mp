@@ -32,8 +32,6 @@ handler.response = (msg) => {
                         console.debug(`add res: ${addRes}`);
                         const json = JSON.parse(addRes.toString());
                         try {
-                            handler.envelop(json.media_id, 'image');
-
                             const postData = JSON.stringify({
                                 'media_id': json.media_id,
                                 'access_token': token
@@ -44,18 +42,20 @@ handler.response = (msg) => {
                                 rejectUnauthorized: false
                             };
                             const delUrl = 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token;
-                            const req = https.request(delUrl, options, (res) => {
-                                console.log(`STATUS: ${res.statusCode}`);
-                                console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+                            const req = https.request(delUrl, options, (delResp) => {
+                                console.log(`STATUS: ${delResp.statusCode}`);
+                                console.log(`HEADERS: ${JSON.stringify(delResp.headers)}`);
                                 let delRes = '';
-                                res.on('data', (buf) => delRes += buf.toString());
-                                res.on('end', () => {
+                                delResp.on('data', (buf) => delRes += buf.toString());
+                                delResp.on('end', () => {
                                     console.debug(`del res: ${delRes}`);
                                 });
                             });
                             // Write data to request body
                             req.write(postData);
                             req.end();
+
+                            handler.envelop(json.media_id, 'image');
                         } catch (e) {
                             console.error(e);
                         }
