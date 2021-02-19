@@ -3,6 +3,7 @@
 const util = require('./util');
 const FormData = require('form-data');
 const https = require('https');
+const axios = require('axios').default;
 
 const handler = module.exports = {};
 
@@ -32,31 +33,20 @@ handler.response = (msg) => {
                         console.debug(`add res: ${addRes}`);
                         const json = JSON.parse(addRes.toString());
                         try {
-                            const postData = JSON.stringify({
-                                'media_id': json.media_id,
-                                'access_token': token
-                            });
-                            const options = {
-                                hostname: 'api.weixin.qq.com',
-                                path: '/cgi-bin/material/del_material?access_token=' + token,
-                                method: 'POST',
-                                rejectUnauthorized: false
-                            };
-                            const delUrl = 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token;
-                            const req = https.request(options, (delResp) => {
-                                console.log(`STATUS: ${delResp.statusCode}`);
-                                console.log(`HEADERS: ${JSON.stringify(delResp.headers)}`);
-                                let delRes = '';
-                                delResp.on('data', (buf) => delRes += buf.toString());
-                                delResp.on('end', () => {
-                                    console.debug(`del res: ${delRes}`);
-                                });
-                            });
-                            // Write data to request body
-                            req.write(postData);
-                            req.end();
-
                             handler.envelop(json.media_id, 'image');
+
+                            const delUrl = 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token;
+                            // Send a POST request
+                            axios({
+                                method: 'post',
+                                url: delUrl,
+                                data: {
+                                    'media_id': json.media_id
+                                }
+                            }).then(function (response) {
+                                console.debug(response.status);
+                                console.debug(response.data);
+                            });
                         } catch (e) {
                             console.error(e);
                         }
