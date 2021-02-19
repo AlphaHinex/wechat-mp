@@ -37,12 +37,14 @@ handler.response = (msg) => {
                                 'access_token': token
                             });
                             const options = {
+                                hostname: 'api.weixin.qq.com',
+                                path: '/cgi-bin/material/del_material?access_token=' + token,
                                 method: 'POST',
                                 contentType: 'application/json',
                                 rejectUnauthorized: false
                             };
                             const delUrl = 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token;
-                            const req = https.request(delUrl, options, (delResp) => {
+                            const req = https.request(options, (delResp) => {
                                 console.log(`STATUS: ${delResp.statusCode}`);
                                 console.log(`HEADERS: ${JSON.stringify(delResp.headers)}`);
                                 let delRes = '';
