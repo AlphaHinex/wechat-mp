@@ -3,6 +3,7 @@
 const util = require('./util');
 const FormData = require('form-data');
 const https = require('https');
+const axios = require('axios').default;
 
 const handler = module.exports = {};
 
@@ -34,28 +35,18 @@ handler.response = (msg) => {
                         try {
                             handler.envelop(json.media_id, 'image');
 
-                            const postData = JSON.stringify({
-                                'media_id': json.media_id,
-                                'access_token': token
-                            });
-                            const options = {
-                                method: 'POST',
-                                contentType: 'application/json',
-                                rejectUnauthorized: false
-                            };
                             const delUrl = 'https://api.weixin.qq.com/cgi-bin/material/del_material?access_token=' + token;
-                            const req = https.request(delUrl, options, (res) => {
-                                console.log(`STATUS: ${res.statusCode}`);
-                                console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-                                let delRes = '';
-                                res.on('data', (buf) => delRes += buf.toString());
-                                res.on('end', () => {
-                                    console.debug(`del res: ${delRes}`);
-                                });
+                            // Send a POST request
+                            axios({
+                                method: 'post',
+                                url: delUrl,
+                                data: {
+                                    'media_id': json.media_id
+                                }
+                            }).then(function (response) {
+                                console.debug(response.status);
+                                console.debug(response.data);
                             });
-                            // Write data to request body
-                            req.write(postData);
-                            req.end();
                         } catch (e) {
                             console.error(e);
                         }
