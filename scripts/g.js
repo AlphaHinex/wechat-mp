@@ -17,7 +17,6 @@ handler.response = (msg) => {
             results.forEach(result => {
                 res += '\r\n\r\n' + result.title;
                 res += '\r\n' + result.link;
-                res += '\r\n' + result.snippet;
             });
             handler.envelop(res);
         }).catch(e => {
