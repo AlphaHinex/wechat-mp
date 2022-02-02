@@ -15,13 +15,55 @@ String.prototype.hashCode = function() {
 
 const followers = new Map();
 
+followers.set('ounM4vx9NN3l0b_xoUygWh_-PIok', new Date(2022, 1, 2));
+followers.set('ounM4vz8TeRRk413BxMeQUq53Zto', new Date(2022, 1, 2));
+followers.set('ounM4v5u1V12W-RyguvMh4gSc3ao', new Date(2022, 1, 2));
+followers.set('ounM4vxlprRZvNeDjDGIlirE5wfQ', new Date(2022, 1, 2));
+followers.set('ounM4v0PBDzsCkJElqxUSR2epYps', new Date(2022, 1, 2));
+followers.set('ounM4v8ZI0h-VlZYuOPy3cNlWySU', new Date(2022, 1, 2));
+followers.set('ounM4v_7Yi_xCB-uhhDi9xDnllqQ', new Date(2022, 1, 2));
+followers.set('ounM4vwZVkjmOyo2Mo4iY67wEKWU', new Date(2022, 1, 2));
+followers.set('ounM4v3gm9qyu6os119N0f5pNEf8', new Date(2022, 1, 2));
+followers.set('ounM4v11iIH2huvrk2wNV8UVnhoA', new Date(2022, 1, 2));
+followers.set('ounM4vyOJuainkq0Feol549CW_Vs', new Date(2022, 1, 2));
+followers.set('ounM4v6PcSiQfXw9FnDLwCFj6IW4', new Date(2022, 1, 2));
+followers.set('ounM4v2q-IcHvkbDNM-Xc-f5bBaw', new Date(2022, 1, 2));
+followers.set('ounM4v1r1Q12OaJJrBLZHlrHNoss', new Date(2022, 1, 2));
+followers.set('ounM4vy0IlB1vpNgbt2sR4m2UE5w', new Date(2022, 1, 2));
+followers.set('ounM4vxfGpeKxNhqUNARU5Fy7P5E', new Date(2022, 1, 2));
+followers.set('ounM4vxPesOKRIO5UajqAAexP6h0', new Date(2022, 1, 2));
+followers.set('ounM4v9Izjg8er0yMt3SzadmMtC4', new Date(2022, 1, 2));
+followers.set('ounM4v9iza4dAyGWDWL_rAgG0UV8', new Date(2022, 1, 2));
+followers.set('ounM4v9x3f8Vz2uMRfNt2Bck1G2c', new Date(2022, 1, 2));
+followers.set('ounM4v-4b6j2t4CDAev2nXK6X5zk', new Date(2022, 1, 2));
+followers.set('ounM4v7lbns87XVzj54qqPggLIHQ', new Date(2022, 1, 2));
+followers.set('ounM4v6ADMhz5YGADCiBU8LV4vO4', new Date(2022, 1, 2));
+followers.set('ounM4v2_BFgd7HWoYJnZOKtnpF0M', new Date(2022, 1, 2));
+followers.set('ounM4vxmB6Pa4J9ibVD02Zm5-6z8', new Date(2022, 1, 2));
+followers.set('ounM4v3BpIqokd7L4pFUVAHlo0oM', new Date(2022, 1, 2));
+followers.set('ounM4v95UGK1ug4kuNuEOHi59Gh0', new Date(2022, 1, 2));
+followers.set('ounM4v_JhnpAdJ5kGiXgp6VjfoQk', new Date(2022, 1, 2));
+followers.set('ounM4v0opUqz4gwqtdxUV2T0_LzA', new Date(2022, 1, 2));
+followers.set('ounM4vyvbKWGG7YQASJsxUZtKfWk', new Date(2022, 1, 2));
+followers.set('ounM4v3fBlovkv5xW2NV3Xa_ZRTw', new Date(2022, 1, 2));
+followers.set('ounM4v0MJ6D00JOLesmyap_wa70o', new Date(2022, 1, 2));
+followers.set('ounM4v4I-qih_HSZbCPTQ75P32uk', new Date(2022, 1, 2));
+followers.set('ounM4v59rqv3-LeEYed4-iJ4aCWk', new Date(2022, 1, 1));
+followers.set('ounM4vx3byHZ4zS0aYJmPThwQMIk', new Date(2022, 1, 1));
+followers.set('ounM4v3zu6IqIwqqiiJQwhA2RI_8', new Date(2022, 1, 1));
+followers.set('ounM4vy97m8QekAAX9sk97MTF_9Y', new Date(2022, 1, 1));
+followers.set('ounM4v8RlIaSI2ZfxPeq2OHC6op0', new Date(2022, 1, 1));
+followers.set('ounM4v3JtVMIx4saAnIYAUIxgg0U', new Date(2022, 1, 1));
+followers.set('ounM4v3r0iPfly0U-KesdA2UwjlE', new Date(2022, 1, 1));
+followers.set('ounM4v2q9HRISlXnh5eiabQtUDak', new Date(2022, 1, 1));
+followers.set('ounM4v72JJALf5rSmrJhaugfEhRo', new Date(2022, 1, 1));
+followers.set('ounM4vysoPibvdddTb9JGViSu_d4', new Date(2022, 1, 1));
 followers.set('ounM4vwcww_TjX9EkEH4nSVrlhRY', new Date(2022, 1, 1));
 followers.set('ounM4v6JxLYXKPNSA3NywLFUhVgs', new Date(2022, 1, 1));
 followers.set('ounM4v5Y2CZ3eXZVXEBcch7nYrZw', new Date(2022, 1, 1));
 followers.set('ounM4v5Hpzs7hS8bZmfdY-qNkulI', new Date(2022, 1, 1));
 followers.set('ounM4v_t1DGe6NChHLxRGKk1oH9I', new Date(2022, 1, 1));
 followers.set('ounM4vyxCVWIWabZfhZASM1FrGYs', new Date(2022, 1, 1));
-followers.set('ounM4vzmImdK50GqO32kznXoRjkU', new Date(2022, 1, 1));
 followers.set('ounM4v5Zv_6pflpKdgQMAYTHtEfs', new Date(2022, 1, 1));
 followers.set('ounM4v3gb3vTB74xjPF2MomqEQew', new Date(2022, 1, 1));
 followers.set('ounM4v2gxQ9cuLwrcpOAtpNoT_VE', new Date(2022, 1, 1));
@@ -304,7 +346,7 @@ let getSubscribeDate = (key) => {
     }
 };
 let baseByDays = function(key) {
-    return (new Date(2022, 1, 3, 18).getTime() - getSubscribeDate(key)) / 1000 / 60 / 60 / 24 / 30;
+    return (new Date(2022, 1, 3, 18).getTime() - getSubscribeDate(key)) / 1000 / 60 / 60 / 24 / 40;
 };
 
 const cowWords = [
@@ -336,8 +378,16 @@ let demoBonus = function (key, word) {
         .toFixed(2);
 };
 let formalBonus = function (key, word) {
-    return (Math.abs(Math.sin((key + word).hashCode() + Date.now() * Math.random())) * baseByDays(key)).toFixed(2);
+    return (
+        Math.abs(
+            Math.sin((key + word).hashCode() + Date.now() * Math.random())
+            * Math.random())
+        * baseByDays(key)
+    ).toFixed(2);
 };
+
+let prefix = '【正式抽奖从初三2月3日12点开始，当前提示文字为测试内容】';
+// let prefix = '';
 
 let used = new Map();
 let pool = 0;
@@ -345,18 +395,18 @@ let lot = function (key, word) {
     words.push(word);
     if (!used.has(key)) {
         let bonus = formalBonus(key, word);
+        used.set(key, bonus);
         if (bonus > 1) {
-            // used.set(key, bonus);
             console.debug(new Date());
             console.debug(used);
-            return '【正式抽奖从初三2月3日12点开始，当前提示文字为测试内容】恭喜您获得 ' + bonus + ' 元红包！祝您 2022 年' + randomWord(goodWords) + '!';
+            return prefix + '恭喜您获得 ' + bonus + ' 元红包！祝您 2022 年' + randomWord(goodWords) + '!【红包口令为手工发放，请耐心等待，超过 24 小时未收到口令可再次向公众号发送任意消息】';
         } else if (bonus > 0) {
             pool += parseFloat(bonus);
             console.debug(pool.toFixed(2));
-            return '【正式抽奖从初三2月3日12点开始，当前提示文字为测试内容】恭喜您为阳光普照奖池贡献 ' + bonus + ' 元！当前奖池总金额 ' + pool.toFixed(2) + ' 元，将在活动结束后通过公众号推送支付宝口令！祝您 2022 年' + randomWord(goodWords) + '!';
+            return prefix + '恭喜您为阳光普照奖池贡献 ' + bonus + ' 元！当前奖池总金额 ' + pool.toFixed(2) + ' 元，将在活动结束后通过公众号推送支付宝口令！祝您 2022 年' + randomWord(goodWords) + '!';
         }
     }
-    return '【正式抽奖从初三2月3日12点开始，当前提示文字为测试内容】每人仅一次机会。祝您 2022 年' + randomWord(words) + '!【此消息内容为从大家的抽奖口令中随机生成，若出现一些奇奇怪怪的词语，切莫当真】';
+    return prefix + '每人仅一次机会。祝您 2022 年' + randomWord(words) + '!【此消息内容为从大家的抽奖口令中随机生成，若出现一些奇奇怪怪的词语，切莫当真】';
 };
 
 handler.response = (msg, fromUser) => {
