@@ -304,7 +304,7 @@ let getSubscribeDate = (key) => {
     }
 };
 let baseByDays = function(key) {
-    return (new Date(2022, 1, 3, 18).getTime() - getSubscribeDate(key)) / 1000 / 60 / 60 / 24 / 20;
+    return (new Date(2022, 1, 3, 18).getTime() - getSubscribeDate(key)) / 1000 / 60 / 60 / 24 / 30;
 };
 
 const cowWords = [
@@ -332,7 +332,7 @@ let randomWord = function (array) {
 let demoBonus = function (key, word) {
     return (Math.abs(Math.sin((key + word).hashCode() + Date.now() * Math.random()))
         * (Date.now() - new Date(2020, 0, 5).getTime())
-        / 1000 / 60 / 60 / 24 / 20)
+        / 1000 / 60 / 60 / 24 / 30)
         .toFixed(2);
 };
 let formalBonus = function (key, word) {
