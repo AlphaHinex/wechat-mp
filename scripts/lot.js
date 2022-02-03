@@ -404,6 +404,8 @@ let lot = function (key, word) {
             pool += parseFloat(bonus);
             console.debug(pool.toFixed(2));
             return prefix + '恭喜您为阳光普照奖池贡献 ' + bonus + ' 元！当前奖池总金额 ' + pool.toFixed(2) + ' 元，将在活动结束后通过公众号推送支付宝口令！祝您 2022 年' + randomWord(goodWords) + '!';
+        } else {
+            return prefix + '很遗憾，您未中奖，谢谢参与。祝您 2022 年' + randomWord(goodWords) + '!';
         }
     }
     return prefix + '每人仅一次机会。祝您 2022 年' + randomWord(words) + '!【此消息内容为从大家的抽奖口令中随机生成，若出现一些奇奇怪怪的词语，切莫当真】';
