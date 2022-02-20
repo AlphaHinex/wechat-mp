@@ -2,16 +2,25 @@
 
 const googleIt = require('google-it');
 const handler = module.exports = {};
-const options = {
-    headers: {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36',
-        'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8'
-    }
-};
 
 handler.response = (msg) => {
     if (msg.startsWith('g ') || msg.startsWith('G ')) {
-        googleIt({options, 'query': msg.substr(2), 'disableConsole': true, limit: 5}).then(results => {
+        googleIt({
+            query: msg.substr(2),
+            options: {
+                url: 'https://www.google.com/search',
+                qs: {
+                    q: msg.substr(2),
+                    num: 5,
+                    start: 0,
+                    lr: 'lang_cn'
+                },
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:34.0) Gecko/20100101 Firefox/34.0'
+                }
+            },
+            'disableConsole': true
+        }).then(results => {
             // access to results object here
             let res = 'Search results:';
             results.forEach(result => {
