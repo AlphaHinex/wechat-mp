@@ -35,6 +35,7 @@ let postsByPage = function(i) {
                     const title = post.querySelector('a.title').text.trim();
                     if (userMap.has(postId) && readCount > userMap.get(postId) ) {
                         msg += title + ' ↑ ' + (readCount - userMap.get(postId) + ' => ' + readCount) + '\r\n';
+                        msg += 'https://www.jianshu.com' + postId + '\r\n\r\n';
                     }
                     userMap.set(postId, readCount);
                 });
