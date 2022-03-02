@@ -3,6 +3,7 @@
 const http = require('http');
 const url = require('url');
 const xml2js = require('xml2js');
+const cron = require("node-cron");
 
 console.log('');
 console.log('Echo Server');
@@ -132,3 +133,9 @@ let buildImageMsg = function (from, to, mediaId) {
 };
 
 http.createServer(onReq).listen(process.env.PORT || 8080);
+
+cron.schedule("* * * * *", () => {
+    let handler = require('./scripts/jianshu');
+    handler.envelop = () => {};
+    handler.response('简书');
+}, { timezone: 'Asia/Shanghai' });
