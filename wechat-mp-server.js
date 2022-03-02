@@ -135,7 +135,7 @@ let buildImageMsg = function (from, to, mediaId) {
 http.createServer(onReq).listen(process.env.PORT || 8080);
 
 // https://www.npmjs.com/package/node-cron
-cron.schedule("* 8-22 * * *", () => {
+cron.schedule("0 8-22 * * *", () => {
     let handler = require('./scripts/jianshu');
     handler.envelop = () => {};
     handler.response('简书');
