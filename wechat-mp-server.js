@@ -38,6 +38,10 @@ let onReq = function (req, res) {
                             handler = require('./scripts/lot');
                         } else if (content.length === 1 && /[\u4e00-\u9fa5]/.test(content)) {
                             handler = require('./scripts/bishun');
+                        } else if (content.startsWith('钉钉 ')) {
+                            handler = require('./scripts/dingtalk');
+                        } else if (content.startsWith('简书')) {
+                            handler = require('./scripts/jianshu');
                         } else {
                             handler = require('./scripts/echo');
                         }
