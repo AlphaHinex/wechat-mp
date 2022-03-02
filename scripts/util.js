@@ -1,11 +1,13 @@
 'use strict';
 
 const https = require('https');
+const axios = require('axios').default;
 
 const util = module.exports = {};
 
 const APPID = process.env.APPID;
 const APPSECRET = process.env.APPSECRET;
+const DINGTALK_TOKEN = process.env.DINGTALK_TOKEN;
 
 let token = '';
 let expireAt = 0;
@@ -265,4 +267,18 @@ util.getPrecision = function getPrecision(value, options) {
         return createInt(precision, 8);
     }
     return precision;
+};
+
+util.dingtalk = (msg, callback) => {
+    axios({
+        url: 'https://oapi.dingtalk.com/robot/send?access_token=' + DINGTALK_TOKEN,
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        method: 'POST',
+        httpsAgent: new https.Agent({
+            rejectUnauthorized: false
+        }),
+        data: {"at": {"isAtAll": false}, "text": {"content": 'hinex:' + msg}, "msgtype": "text"}
+    }).then(callback);
 };
