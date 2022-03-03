@@ -33,9 +33,9 @@ let reportByUser = function(uid) {
                         const postId = post.querySelector('a.title').getAttribute('href').trim();
                         const readCount = parseInt(post.querySelector('div.meta>a').text.trim());
                         const title = post.querySelector('a.title').text.trim();
-                        if (userMap.has(postId) && readCount > userMap.get(postId) ) {
-                            msg += title + '\r\n ↑ ' + (readCount - userMap.get(postId) + ' => ' + readCount) + '\r\n';
-                            msg += 'https://www.jianshu.com' + postId + '\r\n\r\n';
+                        if ((userMap.has(postId) && readCount > userMap.get(postId)) || (!init && !userMap.has(postId))) {
+                            msg += '[' + title + '](https://www.jianshu.com' + postId + ')\n\n';
+                            msg += ' ↑ ' + (readCount - (userMap.get(postId)|0) + ' => ' + readCount) + '\n\n';
                         }
                         userMap.set(postId, readCount);
                     });
@@ -46,7 +46,7 @@ let reportByUser = function(uid) {
                     if (init) {
                         doubleMsg('User ' + uid + '\'s profile initialized!');
                     } else if (msg > '') {
-                        doubleMsg(msg);
+                        doubleMsg('## 简书阅读量报告\n\n' + msg.trim());
                     } else {
                         doubleMsg('Nothing changed during these times.');
                     }
@@ -69,7 +69,7 @@ let doubleMsg = function(msg) {
             msg = '钉钉消息发送失败！\r\n' + msg;
         }
         handler.envelop(msg);
-    });
+    }, '简书日报');
 }
 
 handler.response = (msg) => {

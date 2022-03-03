@@ -269,7 +269,17 @@ util.getPrecision = function getPrecision(value, options) {
     return precision;
 };
 
-util.dingtalk = (msg, callback) => {
+util.dingtalk = (msg, callback, markdownTitle) => {
+    let msgData = {"text": {"content": 'hinex:\n\n' + msg}, "msgtype": "text"};
+    if (markdownTitle) {
+        msgData = {
+            markdown: {
+                title: markdownTitle,
+                text: 'hinex\n\n' + msg
+            },
+            msgtype: "markdown"
+        }
+    }
     axios({
         url: 'https://oapi.dingtalk.com/robot/send?access_token=' + DINGTALK_TOKEN,
         headers: {
@@ -279,6 +289,6 @@ util.dingtalk = (msg, callback) => {
         httpsAgent: new https.Agent({
             rejectUnauthorized: false
         }),
-        data: {"at": {"isAtAll": false}, "text": {"content": 'hinex:' + msg}, "msgtype": "text"}
+        data: msgData
     }).then(callback);
 };
