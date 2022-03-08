@@ -140,3 +140,10 @@ cron.schedule("0 8-22 * * *", () => {
     handler.envelop = () => {};
     handler.response('简书');
 }, { timezone: 'Asia/Shanghai' });
+
+cron.schedule("0 8-22 * * *", () => {
+// cron.schedule("0 8,13,21 * * *", () => {
+    let handler = require('./scripts/hn');
+    handler.envelop = () => {};
+    handler.response('hn');
+}, { timezone: 'Asia/Shanghai' });

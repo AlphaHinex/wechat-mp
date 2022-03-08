@@ -8,6 +8,7 @@ const { parse } = require('node-html-parser');
 const fs = require('fs');
 
 let reportByUser = function(uid) {
+    let userDB = [];
     let userMap = new Map();
     let init = true;
     if (fs.existsSync('./' + uid)) {
@@ -15,7 +16,6 @@ let reportByUser = function(uid) {
         userMap = new Map(JSON.parse(fs.readFileSync('./' + uid, 'utf-8')));
     }
 
-    let msg = '';
     let postsByPage = function(i) {
         axios({
             url: 'https://www.jianshu.com/u/' + uid + '?order_by=shared_at&page=' + i,
@@ -31,12 +31,11 @@ let reportByUser = function(uid) {
                     const dom = parse(response.data);
                     dom.querySelectorAll('div.content').forEach((post) => {
                         const postId = post.querySelector('a.title').getAttribute('href').trim();
-                        const readCount = parseInt(post.querySelector('div.meta>a').text.trim());
                         const title = post.querySelector('a.title').text.trim();
-                        if ((userMap.has(postId) && readCount > userMap.get(postId)) || (!init && !userMap.has(postId))) {
-                            msg += '[' + title + '](https://www.jianshu.com' + postId + ')\n\n';
-                            msg += ' ↑ ' + (readCount - (userMap.get(postId)|0) + ' => ' + readCount) + '\n\n';
-                        }
+                        const readCount = parseInt(post.querySelector('div.meta>a').text.trim());
+                        const increased = readCount - (userMap.get(postId) | 0);
+
+                        userDB.push({postId: postId, title: title, readCount: readCount, increased: increased});
                         userMap.set(postId, readCount);
                     });
                     console.debug('Page ' + i + ' completed, parepare to load page ' + (i+1) );
@@ -45,20 +44,44 @@ let reportByUser = function(uid) {
                     console.debug('User ' + uid + ' has ' + i + ' pages posts.');
                     if (init) {
                         doubleMsg('User ' + uid + '\'s profile initialized!');
-                    } else if (msg > '') {
-                        doubleMsg('## 简书阅读量报告\n\n' + msg.trim());
                     } else {
-                        doubleMsg('Nothing changed during these times.');
+                        let msg = '## 简书阅读量报告\n\n';
+
+                        msg += '### 总量 Top 10\n\n';
+                        userDB.sort(sortByKeyDesc('readCount')).slice(0, 10).forEach( t => {
+                            msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')\n\n';
+                            msg += ' ' + t.readCount + ' ( ↑ ' + t.increased + ')\n\n';
+                        });
+
+                        msg += '### 增长明细\n\n';
+                        let orderByInc = userDB.sort(sortByKeyDesc('increased'));
+                        orderByInc.forEach( t => {
+                            if (t.increased > 0) {
+                                msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')\n\n';
+                                msg += ' ↑ ' + t.increased + ' => ' + t.readCount + '\n\n';
+                            }
+                        });
+
+                        doubleMsg(msg.trim());
                     }
                     fs.writeFileSync('./' + uid, JSON.stringify([...userMap]));
                 }
             } else {
                 console.debug('Request ' + this.url + 'error with status: ' + response.status);
             }
+        }).catch(function (error) {
+            console.error(error);
+            postsByPage(i);
         });
     };
 
     postsByPage(1);
+};
+
+let sortByKeyDesc = (key) => {
+    return function (a,b) {
+        return b[key] - a[key];
+    }
 };
 
 let doubleMsg = function(msg) {
@@ -66,11 +89,10 @@ let doubleMsg = function(msg) {
     util.dingtalk(msg, function (response) {
         if (response.status !== 200) {
             console.debug(response);
-            msg = '钉钉消息发送失败！\r\n' + msg;
+            console.error('钉钉消息发送失败！\r\n' + msg);
         }
-        handler.envelop(msg);
     }, '简书日报');
-}
+};
 
 handler.response = (msg) => {
     if (msg.startsWith('简书')) {
@@ -79,5 +101,6 @@ handler.response = (msg) => {
             uid = '618c59928f3b';
         }
         reportByUser(uid);
+        handler.envelop('请在钉钉中接收简书报告！');
     }
 };

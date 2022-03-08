@@ -2,6 +2,7 @@
 
 const https = require('https');
 const xml2js = require('xml2js');
+const util = require('./util');
 const handler = module.exports = {};
 
 handler.response = (msg) => {
@@ -24,6 +25,12 @@ handler.response = (msg) => {
                         resContent += '\r\n' + item.link;
                     }
                     handler.envelop(resContent);
+                    util.dingtalk(resContent, function (response) {
+                        if (response.status !== 200) {
+                            console.debug(response);
+                            console.error('钉钉消息发送失败！\r\n' + msg);
+                        }
+                    }, 'Hacker News');
                 });
             } catch (e) {
                 console.error(e.message);
