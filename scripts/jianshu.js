@@ -45,20 +45,20 @@ let reportByUser = function(uid) {
                     if (init) {
                         doubleMsg('User ' + uid + '\'s profile initialized!');
                     } else {
-                        let msg = '## 简书阅读量报告\n\n';
+                        let msg = '## 简书阅读量报告 ( ' + uid + ' )\n\n';
 
                         msg += '### 总量 Top 10\n\n';
                         userDB.sort(sortByKeyDesc('readCount')).slice(0, 10).forEach( t => {
-                            msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')\n\n';
-                            msg += ' ' + t.readCount + ' ( ↑ ' + t.increased + ')\n\n';
+                            msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
+                            msg += ' ' + t.readCount + ' ( ↑ ' + t.increased + ')\n';
                         });
 
                         msg += '### 增长明细\n\n';
                         let orderByInc = userDB.sort(sortByKeyDesc('increased'));
                         orderByInc.forEach( t => {
                             if (t.increased > 0) {
-                                msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')\n\n';
-                                msg += ' ↑ ' + t.increased + ' => ' + t.readCount + '\n\n';
+                                msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
+                                msg += ' ↑ ' + t.increased + ' => ' + t.readCount + '\n';
                             }
                         });
 
@@ -91,7 +91,7 @@ let doubleMsg = function(msg) {
             console.debug(response);
             console.error('钉钉消息发送失败！\r\n' + msg);
         }
-    }, '简书日报');
+    }, '简书阅读量报告');
 };
 
 handler.response = (msg) => {
@@ -101,6 +101,6 @@ handler.response = (msg) => {
             uid = '618c59928f3b';
         }
         reportByUser(uid);
-        handler.envelop('请在钉钉中接收简书报告！');
+        handler.envelop('请加入钉钉群接收简书阅读量报告！\r\nhttps://h5.dingtalk.com/circle/healthCheckin.html?corpId=ding0e53bcdadc9542fcd182e90532597458&48bad=98b1c&cbdbhh=qwertyuiop&origin=1');
     }
 };
