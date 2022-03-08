@@ -51,7 +51,7 @@ let reportByUser = function(uid) {
                         doubleMsg('User ' + uid + '\'s profile initialized!');
                     } else {
                         let msg = '## [简书阅读量报告](https://www.jianshu.com/u/' + uid + ')\n\n';
-                        msg += '总文章数：' + total + '；总阅读量：' + totalRead + '；阅读量增加：' + totalInc + '\n\n';
+                        msg += '阅读量增加：' + totalInc + '\n\n总文章数：' + total + '\n\n总阅读量：' + totalRead + '\n\n';
 
                         msg += '### 总量 Top 10\n\n';
                         userDB.sort(sortByKey('readCount')).slice(0, 10).forEach( t => {
