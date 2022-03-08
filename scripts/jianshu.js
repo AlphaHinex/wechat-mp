@@ -11,6 +11,7 @@ let reportByUser = function(uid) {
     let userDB = [];
     let userMap = new Map();
     let init = true;
+    let total = 0, totalRead = 0, totalInc = 0;
     if (fs.existsSync('./' + uid)) {
         init = false;
         userMap = new Map(JSON.parse(fs.readFileSync('./' + uid, 'utf-8')));
@@ -35,6 +36,10 @@ let reportByUser = function(uid) {
                         const readCount = parseInt(post.querySelector('div.meta>a').text.trim());
                         const increased = readCount - (userMap.get(postId) | 0);
 
+                        total ++;
+                        totalRead += readCount;
+                        totalInc += increased;
+
                         userDB.push({postId: postId, title: title, readCount: readCount, increased: increased});
                         userMap.set(postId, readCount);
                     });
@@ -46,11 +51,12 @@ let reportByUser = function(uid) {
                         doubleMsg('User ' + uid + '\'s profile initialized!');
                     } else {
                         let msg = '## [简书阅读量报告](https://www.jianshu.com/u/' + uid + ')\n\n';
+                        msg += '总文章数：' + total + '；总阅读量：' + totalRead + '；阅读量增加：' + totalInc + '\n\n';
 
                         msg += '### 总量 Top 10\n\n';
                         userDB.sort(sortByKey('readCount')).slice(0, 10).forEach( t => {
                             msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
-                            msg += ' ' + t.readCount + ' ( ↑ ' + t.increased + ')\n';
+                            msg += ' ' + t.readCount + ' ( ' + ((t.readCount/totalRead)*100).toFixed(2) + '%，↑ ' + t.increased + ')\n';
                         });
                         msg += '### 总量 Bottom 5\n\n';
                         userDB.sort(sortByKey('readCount', false)).slice(0, 5).forEach( t => {
