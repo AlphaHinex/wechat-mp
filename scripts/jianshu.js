@@ -45,16 +45,21 @@ let reportByUser = function(uid) {
                     if (init) {
                         doubleMsg('User ' + uid + '\'s profile initialized!');
                     } else {
-                        let msg = '## 简书阅读量报告 ( ' + uid + ' )\n\n';
+                        let msg = '## [简书阅读量报告](https://www.jianshu.com/u/' + uid + ')\n\n';
 
                         msg += '### 总量 Top 10\n\n';
-                        userDB.sort(sortByKeyDesc('readCount')).slice(0, 10).forEach( t => {
+                        userDB.sort(sortByKey('readCount')).slice(0, 10).forEach( t => {
+                            msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
+                            msg += ' ' + t.readCount + ' ( ↑ ' + t.increased + ')\n';
+                        });
+                        msg += '### 总量 Bottom 5\n\n';
+                        userDB.sort(sortByKey('readCount', false)).slice(0, 5).forEach( t => {
                             msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
                             msg += ' ' + t.readCount + ' ( ↑ ' + t.increased + ')\n';
                         });
 
                         msg += '### 增长明细\n\n';
-                        let orderByInc = userDB.sort(sortByKeyDesc('increased'));
+                        let orderByInc = userDB.sort(sortByKey('increased'));
                         orderByInc.forEach( t => {
                             if (t.increased > 0) {
                                 msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
@@ -78,9 +83,9 @@ let reportByUser = function(uid) {
     postsByPage(1);
 };
 
-let sortByKeyDesc = (key) => {
+let sortByKey = (key, desc) => {
     return function (a,b) {
-        return b[key] - a[key];
+        return desc === false ? a[key] - b[key] : b[key] - a[key];
     }
 };
 
