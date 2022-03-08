@@ -141,7 +141,7 @@ cron.schedule("0 9 * * *", () => {
     handler.response('简书');
 }, { timezone: 'Asia/Shanghai' });
 
-cron.schedule("0 7,13,22, * * *", () => {
+cron.schedule("0 7,13,22 * * *", () => {
 // cron.schedule("0 8,13,21 * * *", () => {
     let handler = require('./scripts/hn');
     handler.envelop = () => {};
