@@ -18,19 +18,13 @@ handler.response = (msg) => {
         rssRes.on('end', () => {
             try {
                 xml2js.parseString(rawData, function (error, rss) {
-                    resContent += 'Top 10 Hacker News';
+                    resContent += '## Top 10 Hacker News\n\n';
                     for (let i = 0; i < 10; i++) {
                         let item = rss.rss.channel[0].item[i];
-                        resContent += '\r\n\r\n' + item.title;
-                        resContent += '\r\n' + item.link;
+                        resContent += '1. [' + item.title + '](' + item.link + ')\n';
                     }
-                    handler.envelop(resContent);
-                    util.dingtalk(resContent, function (response) {
-                        if (response.status !== 200) {
-                            console.debug(response);
-                            console.error('钉钉消息发送失败！\r\n' + msg);
-                        }
-                    }, 'Hacker News');
+                    handler.envelop(resContent.trim());
+                    util.dingtalk(resContent.trim(), 'Top 10 Hacker News');
                 });
             } catch (e) {
                 console.error(e.message);

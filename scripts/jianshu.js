@@ -86,12 +86,7 @@ let sortByKeyDesc = (key) => {
 
 let doubleMsg = function(msg) {
     console.info(msg);
-    util.dingtalk(msg, function (response) {
-        if (response.status !== 200) {
-            console.debug(response);
-            console.error('钉钉消息发送失败！\r\n' + msg);
-        }
-    }, '简书阅读量报告');
+    util.dingtalk(msg, '简书阅读量报告');
 };
 
 handler.response = (msg) => {
@@ -101,6 +96,6 @@ handler.response = (msg) => {
             uid = '618c59928f3b';
         }
         reportByUser(uid);
-        handler.envelop('请加入钉钉群接收简书阅读量报告！\r\nhttps://h5.dingtalk.com/circle/healthCheckin.html?corpId=ding0e53bcdadc9542fcd182e90532597458&48bad=98b1c&cbdbhh=qwertyuiop&origin=1');
+        handler.envelop(util.dingtalkMsg);
     }
 };

@@ -269,7 +269,7 @@ util.getPrecision = function getPrecision(value, options) {
     return precision;
 };
 
-util.dingtalk = (msg, callback, markdownTitle) => {
+util.dingtalk = (msg, markdownTitle) => {
     let msgData = {"text": {"content": 'hinex:\n\n' + msg}, "msgtype": "text"};
     if (markdownTitle) {
         msgData = {
@@ -290,5 +290,12 @@ util.dingtalk = (msg, callback, markdownTitle) => {
             rejectUnauthorized: false
         }),
         data: msgData
-    }).then(callback);
+    }).then(function (response) {
+        if (response.status !== 200) {
+            console.debug(response);
+            console.error('钉钉消息发送失败！\r\n' + msg);
+        }
+    });
 };
+
+util.dingtalkMsg = '请加入钉钉群接收消息！\r\nhttps://h5.dingtalk.com/circle/healthCheckin.html?corpId=ding0e53bcdadc9542fcd182e90532597458&48bad=98b1c&cbdbhh=qwertyuiop&origin=1';
