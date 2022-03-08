@@ -270,12 +270,12 @@ util.getPrecision = function getPrecision(value, options) {
 };
 
 util.dingtalk = (msg, markdownTitle) => {
-    let msgData = {"text": {"content": 'hinex:\n\n' + msg}, "msgtype": "text"};
+    let msgData = {"text": {"content": msg}, "msgtype": "text"};
     if (markdownTitle) {
         msgData = {
             markdown: {
                 title: markdownTitle,
-                text: 'hinex\n\n' + msg
+                text: msg
             },
             msgtype: "markdown"
         }
