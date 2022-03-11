@@ -47,23 +47,21 @@ let reportByUser = function(uid) {
                     postsByPage(++i);
                 } else {
                     console.debug('User ' + uid + ' has ' + i + ' pages posts.');
+                    let msg = '## [简书阅读量报告](https://www.jianshu.com/u/' + uid + ')\n\n';
+                    msg += '阅读量增加：' + totalInc + '\n\n总文章数：' + total + '\n\n总阅读量：' + totalRead + '\n\n';
+                    msg += '### 总量 Top 10\n\n';
+                    userDB.sort(sortByKey('readCount')).slice(0, 10).forEach( t => {
+                        msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
+                        msg += ' ' + t.readCount + ' ( ' + ((t.readCount/totalRead)*100).toFixed(2) + '%，↑ ' + t.increased + ')\n';
+                    });
+                    msg += '### 总量 Bottom 5\n\n';
+                    userDB.sort(sortByKey('readCount', false)).slice(0, 5).forEach( t => {
+                        msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
+                        msg += ' ' + t.readCount + ' ( ↑ ' + t.increased + ')\n';
+                    });
                     if (init) {
-                        doubleMsg('User ' + uid + '\'s profile initialized!');
+                        msg += '\n> 首次统计时，增量为全量；再次统计时，为两次统计间隔的增量。';
                     } else {
-                        let msg = '## [简书阅读量报告](https://www.jianshu.com/u/' + uid + ')\n\n';
-                        msg += '阅读量增加：' + totalInc + '\n\n总文章数：' + total + '\n\n总阅读量：' + totalRead + '\n\n';
-
-                        msg += '### 总量 Top 10\n\n';
-                        userDB.sort(sortByKey('readCount')).slice(0, 10).forEach( t => {
-                            msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
-                            msg += ' ' + t.readCount + ' ( ' + ((t.readCount/totalRead)*100).toFixed(2) + '%，↑ ' + t.increased + ')\n';
-                        });
-                        msg += '### 总量 Bottom 5\n\n';
-                        userDB.sort(sortByKey('readCount', false)).slice(0, 5).forEach( t => {
-                            msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
-                            msg += ' ' + t.readCount + ' ( ↑ ' + t.increased + ')\n';
-                        });
-
                         msg += '### 增长明细\n\n';
                         let orderByInc = userDB.sort(sortByKey('increased'));
                         orderByInc.forEach( t => {
@@ -72,9 +70,8 @@ let reportByUser = function(uid) {
                                 msg += ' ↑ ' + t.increased + ' => ' + t.readCount + '\n';
                             }
                         });
-
-                        doubleMsg(msg.trim());
                     }
+                    doubleMsg(msg.trim());
                     fs.writeFileSync('./' + uid, JSON.stringify([...userMap]));
                 }
             } else {
