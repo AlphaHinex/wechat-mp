@@ -34,13 +34,24 @@ let reportByUser = function(uid) {
                         const postId = post.querySelector('a.title').getAttribute('href').trim();
                         const title = post.querySelector('a.title').text.trim();
                         const readCount = parseInt(post.querySelector('div.meta>a').text.trim());
-                        const increased = readCount - (userMap.get(postId) | 0);
+                        const daysMargin = Math.round((new Date().getTime()
+                                - Date.parse(post.querySelector('.time').getAttribute('data-shared-at')))
+                                / 1000 / 60 / 60 / 24);
+                        const readAvg = (readCount / daysMargin).toFixed(4);
+                        const increased = init ? 0 : (readCount - userMap.get(postId));
 
                         total ++;
                         totalRead += readCount;
                         totalInc += increased;
 
-                        userDB.push({postId: postId, title: title, readCount: readCount, increased: increased});
+                        userDB.push({
+                            postId: postId,
+                            title: title,
+                            readCount: readCount,
+                            increased: increased,
+                            readAvg: readAvg,
+                            daysMargin: daysMargin
+                        });
                         userMap.set(postId, readCount);
                     });
                     console.debug('Page ' + i + ' completed, parepare to load page ' + (i+1) );
@@ -48,23 +59,41 @@ let reportByUser = function(uid) {
                 } else {
                     console.debug('User ' + uid + ' has ' + i + ' pages posts.');
                     let msg = '## [简书阅读量报告](https://www.jianshu.com/u/' + uid + ')\n\n';
-                    msg += '阅读量增加：' + totalInc + '\n\n总文章数：' + total + '\n\n总阅读量：' + totalRead + '\n\n';
-                    msg += '### 总量 Top 10\n\n';
+                    if (!init) {
+                        msg += '阅读量增加：' + totalInc + '\n\n';
+                    }
+                    msg += '总文章数：' + total + '\n\n总阅读量：' + totalRead + '\n\n';
+
+                    msg += '---\n\n';
+                    msg += '### 总量\n\n#### Top 10\n\n';
                     userDB.sort(sortByKey('readCount')).slice(0, 10).forEach( t => {
                         msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
-                        msg += ' ' + t.readCount + ' ( ' + ((t.readCount/totalRead)*100).toFixed(2) + '%，↑ ' + t.increased + ')\n';
+                        msg += ' ' + t.readCount + ' ( ' + ((t.readCount/totalRead)*100).toFixed(2) + '%' +
+                            (t.increased > 0 ? '，↑ ' + t.increased : '') + ')\n';
                     });
-                    msg += '### 总量 Bottom 5\n\n';
+                    msg += '\n#### Bottom 5\n\n';
                     userDB.sort(sortByKey('readCount', false)).slice(0, 5).forEach( t => {
                         msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
-                        msg += ' ' + t.readCount + ' ( ↑ ' + t.increased + ')\n';
+                        msg += ' ' + t.readCount + (t.increased > 0 ? ' ( ↑ ' + t.increased + ')' : '') + '\n';
                     });
-                    if (init) {
-                        msg += '\n> 首次统计时，增量为全量；再次统计时，为两次统计间隔的增量。';
-                    } else {
+
+                    msg += '---\n\n';
+                    msg += '### 阅读量日均增速\n\n#### Top 10\n\n';
+                    userDB.sort(sortByKey('readAvg')).slice(0, 10).forEach( t => {
+                        msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ') ';
+                        msg += t.readAvg + ' ( ' + t.readCount + ' / ' + t.daysMargin + ' )\n';
+                    });
+                    msg += '\n#### Bottom 5\n\n';
+                    userDB.sort(sortByKey('readAvg', false)).slice(0, 5).forEach( t => {
+                        msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ') ';
+                        msg += t.readAvg + ' ( ' + t.readCount + ' / ' + t.daysMargin + ' )\n';
+                    });
+
+                    if (!init) {
+                        msg += '---\n\n';
                         msg += '### 增长明细\n\n';
                         let orderByInc = userDB.sort(sortByKey('increased'));
-                        orderByInc.forEach( t => {
+                        orderByInc.forEach(t => {
                             if (t.increased > 0) {
                                 msg += '1. [' + t.title + '](https://www.jianshu.com' + t.postId + ')';
                                 msg += ' ↑ ' + t.increased + ' => ' + t.readCount + '\n';
