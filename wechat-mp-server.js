@@ -4,6 +4,7 @@ const http = require('http');
 const url = require('url');
 const xml2js = require('xml2js');
 const cron = require("node-cron");
+const io = require('./io')
 
 console.log('');
 console.log('Echo Server');
@@ -132,7 +133,11 @@ let buildImageMsg = function (from, to, mediaId) {
     return resp;
 };
 
-http.createServer(onReq).listen(process.env.PORT || 8080);
+const httpServer = http.createServer(onReq);
+
+io.server.attach(httpServer);
+
+httpServer.listen(process.env.PORT || 8080);
 
 // https://www.npmjs.com/package/node-cron
 cron.schedule("0 9 * * *", () => {
