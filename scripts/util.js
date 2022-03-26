@@ -298,4 +298,4 @@ util.dingtalk = (msg, markdownTitle) => {
     });
 };
 
-util.dingtalkMsg = '请加入钉钉群接收消息！\r\nhttps://h5.dingtalk.com/circle/healthCheckin.html?corpId=ding0e53bcdadc9542fcd182e90532597458&48bad=98b1c&cbdbhh=qwertyuiop&origin=1';
+util.dingtalkMsg = '请加入钉钉群（33005170）接收消息！';
