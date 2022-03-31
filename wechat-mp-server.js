@@ -3,8 +3,10 @@
 const http = require('http');
 const url = require('url');
 const xml2js = require('xml2js');
+const fs = require('fs');
 const cron = require("node-cron");
 const io = require('./io')
+const axios = require("axios");
 
 console.log('');
 console.log('Echo Server');
@@ -139,11 +141,30 @@ io.server.attach(httpServer);
 
 httpServer.listen(process.env.PORT || 8080);
 
+let downloadSearchXml = () => {
+    axios({
+        url: 'https://alphahinex.github.io/search.xml',
+        headers: {
+            'Content-Type': 'application/xml;charset=utf-8'
+        }
+    }).then(function (response) {
+        if (response.status === 200) {
+            fs.writeFileSync('./search.xml', response.data);
+        } else {
+            console.error(response);
+        }
+    });
+};
+
+downloadSearchXml();
+
 // https://www.npmjs.com/package/node-cron
 cron.schedule("0 9 * * *", () => {
     let handler = require('./scripts/jianshu');
     handler.envelop = () => {};
     handler.response('简书');
+
+    downloadSearchXml();
 }, { timezone: 'Asia/Shanghai' });
 
 cron.schedule("0 7,13,22 * * *", () => {

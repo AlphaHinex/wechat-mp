@@ -18,7 +18,8 @@
 或直接在本地，发送请求调试，如：
 
 ```bash
-$ curl http://localhost:8080 -d '<xml><FromUserName>abc</FromUserName><ToUserName>def</ToUserName><MsgType>text</MsgType><Content>abc</Content></xml>'
+$ curl http://localhost:8080 \
+-d '<xml><FromUserName>abc</FromUserName><ToUserName>def</ToUserName><MsgType>text</MsgType><Content>abc</Content></xml>'
 ```
 
 服务端运行
