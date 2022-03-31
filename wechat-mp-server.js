@@ -46,6 +46,8 @@ let onReq = function (req, res) {
                             handler = require('./scripts/dingtalk');
                         } else if (content.startsWith('简书')) {
                             handler = require('./scripts/jianshu');
+                        } else if (content.startsWith('字帖')) {
+                            handler = require('./scripts/zitie');
                         } else {
                             handler = require('./scripts/echo');
                         }
