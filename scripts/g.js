@@ -13,7 +13,8 @@ handler.response = (msg) => {
                     q: msg.substr(2),
                     num: 5,
                     start: 0,
-                    lr: 'lang_cn'
+                    // lr: 'lang_zh-CN'
+                    lr: 'lang_en'
                 },
                 headers: {
                     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:34.0) Gecko/20100101 Firefox/34.0'
@@ -26,6 +27,7 @@ handler.response = (msg) => {
             results.forEach(result => {
                 res += '\r\n\r\n' + result.title;
                 res += '\r\n' + result.link;
+                res += '\r\n' + result.snippet;
             });
             handler.envelop(res);
         }).catch(e => {
