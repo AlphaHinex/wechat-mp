@@ -17,7 +17,7 @@ handler.response = (msg) => {
         '&raw%5BAttribute%5D%5BCopybookType%5D=4' +
         '&raw%5BAttribute%5D%5Bisvip%5D=0' +
         '&raw%5BContent%5D%5B0%5D%5BWord%5D=' +
-        encodeURIComponent(msg.substr(msg.indexOf(' ') + 1).replace(/[，。《》——·“”、（）\[\]【】？：！]/g, '')) +
+        encodeURIComponent(msg.substr(msg.indexOf(' ') + 1).replace(/[，。《》——·“”、（）\[\]【】？：！:!\?]/g, '')) +
         '&copybookType=4';
 
     axios({
