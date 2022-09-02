@@ -162,9 +162,9 @@ downloadSearchXml();
 
 // https://www.npmjs.com/package/node-cron
 cron.schedule("0 9 * * *", () => {
-    let handler = require('./scripts/jianshu');
-    handler.envelop = () => {};
-    handler.response('简书');
+    // let handler = require('./scripts/jianshu');
+    // handler.envelop = () => {};
+    // handler.response('简书');
 
     downloadSearchXml();
 }, { timezone: 'Asia/Shanghai' });
