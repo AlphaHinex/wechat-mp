@@ -12,6 +12,8 @@ handler.response = (msg) => {
             const key = newLine.match(/^\d*/)[0];
             if (/^\d{1,3}/.test(key)) {
                 map.set(key, newLine);
+            } else {
+                result += line + '\n';
             }
         } else {
             result += line + '\n';
