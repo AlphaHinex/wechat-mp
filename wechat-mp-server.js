@@ -38,7 +38,7 @@ let onReq = function (req, res) {
                     try {
                         handler = require('./scripts/' + prefix);
                     } catch (err) {
-                        if (content.length === 4 && content.indexOf('虎') > -1) {
+                        if (content.length === 4 && content.indexOf('兔') > -1) {
                             handler = require('./scripts/lot');
                         } else if (content.length === 1 && /[\u4e00-\u9fa5]/.test(content)) {
                             handler = require('./scripts/bishun');
@@ -71,7 +71,7 @@ let onReq = function (req, res) {
                     welcome += "1. 关注时回复欢迎消息\r\n";
                     welcome += "2. 回声功能：对任何发送给公众号的文本消息，回复 “发送内容, you said.”；其他类型的消息回复 “Not support yet.”\r\n";
                     welcome += "3. 十大 Hacker News：发送 hn 关键字，不区分大小写，回复当时 Hacker News RSS 中的前十条内容\r\n";
-                    welcome += "4. 抽奖：发送带“虎”字的四字消息，抽取随机金额\r\n";
+                    welcome += "4. 抽奖：发送带“兔”字的四字消息，抽取随机金额\r\n";
                     welcome += "5. Base64 编解码：发送 base64 encode xxxx 进行编码，或者 base64 decode xxxx 进行解码\r\n";
                     res.setHeader('Content-Type', req.headers['content-type']);
                     res.write(buildTextMsg(result.xml.ToUserName[0], result.xml.FromUserName[0], welcome));

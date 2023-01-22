@@ -467,7 +467,7 @@ let getSubscribeDate = (key) => {
     }
 };
 let baseByDays = function(key) {
-    return (new Date(2022, 1, 3, 18).getTime() - getSubscribeDate(key)) / 1000 / 60 / 60 / 24 / 40;
+    return (new Date(2023, 0, 24, 18).getTime() - getSubscribeDate(key)) / 1000 / 60 / 60 / 24 / 40;
 };
 
 const cowWords = [
@@ -485,7 +485,13 @@ const tigerWords = [
     '龙行虎步', '云龙风虎', '鹰扬虎视', '龙吟虎啸', '虎体熊腰'
 ];
 
-const goodWords = tigerWords;
+const rabbitWords = [
+    '大展宏兔', '前兔无量', '兔飞猛进', '马中赤兔', '动如脱兔',
+    '兔年吉祥', '兔年大吉', '玉兔迎新', '兔跃平原', '扬眉兔气',
+    '兔步青云', '谈兔不凡', '兔围而出', '兔出贡献', '前兔似锦'
+];
+
+const goodWords = rabbitWords;
 let words = [];
 
 let randomWord = function (array) {
@@ -507,7 +513,7 @@ let formalBonus = function (key, word) {
     ).toFixed(2);
 };
 
-let prefix = '【正式抽奖从初三2月3日12点开始，当前提示文字为测试内容】';
+let prefix = '【正式抽奖从初三1月24日12点开始，当前提示文字为测试内容】';
 // let prefix = '';
 
 let used = new Map();
@@ -520,16 +526,16 @@ let lot = function (key, word) {
         if (bonus > 1) {
             console.debug(new Date());
             console.debug(used);
-            return prefix + '恭喜您获得 ' + bonus + ' 元红包！祝您 2022 年' + randomWord(goodWords) + '!【红包口令为手工发放，请耐心等待，超过 24 小时未收到口令可再次向公众号发送任意消息】';
+            return prefix + '恭喜您获得 ' + bonus + ' 元红包！祝您 2023 年' + randomWord(goodWords) + '!【红包口令为手工发放，请耐心等待，超过 24 小时未收到口令可再次向公众号发送任意消息】';
         } else if (bonus > 0) {
             pool += parseFloat(bonus);
             console.debug(pool.toFixed(2));
-            return prefix + '恭喜您为阳光普照奖池贡献 ' + bonus + ' 元！当前奖池总金额 ' + pool.toFixed(2) + ' 元，将在活动结束后通过公众号推送支付宝口令！祝您 2022 年' + randomWord(goodWords) + '!';
+            return prefix + '恭喜您为阳光普照奖池贡献 ' + bonus + ' 元！当前奖池总金额 ' + pool.toFixed(2) + ' 元，将在活动结束后通过公众号推送支付宝口令！祝您 2023 年' + randomWord(goodWords) + '!';
         } else {
-            return prefix + '很遗憾，您未中奖，谢谢参与。祝您 2022 年' + randomWord(goodWords) + '!';
+            return prefix + '很遗憾，您未中奖，谢谢参与。祝您 2023 年' + randomWord(goodWords) + '!';
         }
     }
-    return prefix + '每人仅一次机会。祝您 2022 年' + randomWord(words) + '!【此消息内容为从大家的抽奖口令中随机生成，若出现一些奇奇怪怪的词语，切莫当真】';
+    return prefix + '每人仅一次机会。祝您 2023 年' + randomWord(words) + '!【此消息内容为从大家的抽奖口令中随机生成，若出现一些奇奇怪怪的词语，切莫当真】';
 };
 
 handler.response = (msg, fromUser) => {
