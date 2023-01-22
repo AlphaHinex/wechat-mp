@@ -467,7 +467,7 @@ let getSubscribeDate = (key) => {
     }
 };
 let baseByDays = function(key) {
-    return (new Date(2023, 0, 24, 18).getTime() - getSubscribeDate(key)) / 1000 / 60 / 60 / 24 / 40;
+    return (new Date(2023, 0, 24, 18).getTime() - getSubscribeDate(key)) / 1000 / 60 / 60 / 24 / 80;
 };
 
 const cowWords = [
