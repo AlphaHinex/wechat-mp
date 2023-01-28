@@ -46,6 +46,8 @@ let onReq = function (req, res) {
                             handler = require('./scripts/dingtalk');
                         } else if (content.startsWith('简书')) {
                             handler = require('./scripts/jianshu');
+                        } else if (content.startsWith('公众号')) {
+                            handler = require('./scripts/wechat-mp');
                         } else if (content.startsWith('字帖')) {
                             handler = require('./scripts/zitie');
                         } else if (content.indexOf('接龙') > -1) {
