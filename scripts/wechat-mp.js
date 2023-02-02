@@ -18,5 +18,16 @@ handler.response = (msg) => {
             }
         });
         handler.envelop(util.dingtalkMsg);
+    } else if (msg.startsWith('公众号更新 ')) {
+        const cmdStr = '/opt/wechat-mp/cli/wechat-mp_linux_amd64 ' +
+            '--cookie "' + msg.substr(4) + '" ' +
+            '-o /opt/wechat-mp/cli --saved-only';
+        exec(cmdStr, function (err, stdout, stderr) {
+            if (err) {
+                console.log(stderr);
+            } else {
+                console.log(stdout);
+            }
+        });
     }
 };
