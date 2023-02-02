@@ -25,8 +25,10 @@ handler.response = (msg) => {
         exec(cmdStr, function (err, stdout, stderr) {
             if (err) {
                 console.log(stderr);
+                handler.envelop('更新失败！' + stderr);
             } else {
                 console.log(stdout);
+                handler.envelop('更新成功');
             }
         });
     }
