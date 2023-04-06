@@ -52,6 +52,8 @@ let onReq = function (req, res) {
                             handler = require('./scripts/zitie');
                         } else if (content.indexOf('接龙') > -1) {
                             handler = require('./scripts/jielong');
+                        } else if (content.indexOf('土味情话') > -1) {
+                            handler = require('./scripts/tuweiqinghua');
                         } else {
                             handler = require('./scripts/echo');
                         }

@@ -11,6 +11,7 @@ handler.response = (msg) => {
             let newLine = line.substr(line.indexOf('.') + 2);
             const key = newLine.match(/^\d*/)[0];
             if (/^\d{1,3}/.test(key)) {
+                // TODO should retain duplicated keys
                 map.set(key, newLine);
             } else {
                 result += line + '\n';
