@@ -38,7 +38,7 @@ let onReq = function (req, res) {
                     try {
                         handler = require('./scripts/' + prefix);
                     } catch (err) {
-                        if (content.length === 4 && content.indexOf('兔') > -1) {
+                        if (content.length === 4 && content.indexOf('龙') > -1) {
                             handler = require('./scripts/lot');
                         } else if (content.length === 1 && /[\u4e00-\u9fa5]/.test(content)) {
                             handler = require('./scripts/bishun');
