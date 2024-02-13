@@ -2,8 +2,8 @@
 
 const axios = require('axios').default;
 
-const token = '451063539'
-const cookie = 'appmsglist_action_3208147898=card; appmsglist_action_3863882394=card; noticeLoginFlag=1; ua_id=q03RzogCTZixWUvhAAAAAA3O_hLGf8hh8ZRLnDNEywU=; pgv_pvi=7473781760; mm_lang=zh_CN; pgv_pvid=7235700328; tvfe_boss_uuid=f438c11e71b550ca; ts_uid=7145228605; pac_uid=0_42178da8ef179; wxuin=15629552660884; personAgree_3208147898=true; fqm_pvqid=18eb8d63-4e9c-43e1-b480-c4d25ad890a2; RK=7J0s0ZzVVp; ptcz=6fb266bb5bf1aec0631768015c1f9d2de4b3558911b997b4b52d1cb72ef3308e; LW_uid=J126g4c3t7o6w5O155n1k6r9F1; __root_domain_v=.weixin.qq.com; _qddaz=QD.109645282144077; eas_sid=q146N6C1D0v4x853Y2W5K166q1; ptui_loginuin=1628406477; LW_sid=7106U7P3q608x1q4N4d9G6Y9O1; uuid=fb517bda649b84123aad143d83437187; rand_info=CAESILPvkcC64DFgizRn4WPUvlrxRdCTucgIXCSVjikqBESH; slave_bizuin=3208147898; data_bizuin=3208147898; bizuin=3208147898; data_ticket=aoLaYEibOCMwcz91nq7cOIKR7G6Twujvh2DrT2SPZmyDorEkANOarRRpeyIpWjCM; slave_sid=aERmY1JKUWJoS2swMGxXcGlKZ1B0d3pRTm9fUThDYkxQcmFJZEZ3d1FHMFE5X2NCZ1l6aEFLU3hVRFAwXzBfdmRCd2g2bkl0aVkzT0V2MmhSOWRKUWtfU2ozd1NTZGFvVUY2aUlyemlJd21GenJmUEJodVlBd2FOeEtCeDFvM1RhSXVqS05DV1NLUEdodFpE; slave_user=gh_cde907c120da; xid=7b6da3190e626bf11372baa106ecc898; _clck=3208147898|1|f8h|0; _clsk=1oawvio|1674391206006|3|1|mp.weixin.qq.com/weheat-agent/payload';
+const token = '534920354'
+const cookie = 'appmsglist_action_3208147898=card; appmsglist_action_3863882394=card; ua_id=q03RzogCTZixWUvhAAAAAA3O_hLGf8hh8ZRLnDNEywU=; pgv_pvi=7473781760; mm_lang=zh_CN; pgv_pvid=7235700328; tvfe_boss_uuid=f438c11e71b550ca; ts_uid=7145228605; pac_uid=0_42178da8ef179; wxuin=15629552660884; fqm_pvqid=18eb8d63-4e9c-43e1-b480-c4d25ad890a2; RK=7J0s0ZzVVp; ptcz=6fb266bb5bf1aec0631768015c1f9d2de4b3558911b997b4b52d1cb72ef3308e; _qddaz=QD.109645282144077; iip=0; _qimei_q36=; _qimei_h38=c613c18efbd4b7839bbe3c940300000da17a1e; __root_domain_v=.weixin.qq.com; _qimei_fingerprint=7de236812158edd0ee147ccfef07638b; ptui_loginuin=3810210064; poc_sid=HNa5vWWj6FSKj7DSTYxkA7gb6BlHmK6Xku1UUemc; rand_info=CAESINMi85diuZEr6ZecIn4AlGH9/6qncfgWQ5UATdp4YQ99; slave_bizuin=3208147898; data_bizuin=3208147898; bizuin=3208147898; data_ticket=P7og0lwWwES82YPcESvBI3MLfaF71xv2fFJiPZe9rq2vci65FzEtRHsgXd0EQD48; slave_sid=VVowVmxuX1pFOGhuOVB3N18wdjR0WW85RlNGZDEzcFVVQ0xLeVlhN2NSc29SWUx2NW5MWmZVdk1MVDJCZm5hVWQxRnV0aGkxcmpDbTZ6cmJCN1pSNWFKbFA0ME5odlBJa0U3MWpSZjg2V25yT3lFaG9xV2ZrZkRwZnM1czd6N1dTeFZLcW1lSzFrV0p6eEIw; slave_user=gh_cde907c120da; xid=0e54643169b0cfb176a19623a0f293c4; _clck=3208147898|1|fj7|0; _clsk=12jb5tn|1707698417392|4|1|mp.weixin.qq.com/weheat-agent/payload/record';
 
 let sum = 0;
 let idx = 0;
@@ -24,7 +24,7 @@ let followersByPage = function (openid, createTime) {
                 // console.debug(date);
                 ++idx;
                 // console.debug('followers.set(\'' + lastUser + '\', new Date(' + (date.getYear() + 1900) + ', ' + date.getMonth() + ', ' + date.getDate() + '));');
-                step = (new Date(2023, 0, 24, 18).getTime() - date) / 1000 / 60 / 60 / 24 / 300;
+                step = (new Date(2024, 1, 12, 24).getTime() - date) / 1000 / 60 / 60 / 24 / 300;
                 step = (Math.abs(Math.sin(Date.now() * Math.random()) * Math.random()) * step);
                 sum += step;
                 console.debug(user.user_name + ',' + user.user_openid + ',' + step.toFixed(2));
@@ -43,4 +43,4 @@ let followersByPage = function (openid, createTime) {
 
 console.debug('username,openid,bouns');
 followersByPage('',
-    new Date(2023, 0, 24, 18).getTime()/1000);
+    new Date(2024, 1, 12, 24).getTime()/1000);
