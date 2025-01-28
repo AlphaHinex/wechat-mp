@@ -1607,7 +1607,13 @@ const dragonWords = [
     '双龙取水', '时乘六龙', '龙战于野', '神龙摆尾', '六龙回旋'
 ]
 
-const goodWords = dragonWords;
+const snakeWords = [
+    '涟运蛇年', '金蛇狂舞', '灵蛇之珠', '龙蛇飞动', '龙飞蛇舞',
+    '笔走龙蛇', '蛇舞新春', '蛇来带金', '蛇年大吉', '蛇序呈祥',
+    '蛇报佳春', '金蛇报春', '喜迎蛇来', '龙蛇废物', '笔底龙蛇'
+]
+
+const goodWords = snakeWords;
 let words = [];
 
 let randomWord = function (array) {
@@ -1623,7 +1629,7 @@ let formalBonus = function (key, word) {
     ).toFixed(2);
 };
 
-let prefix = '【正式抽奖从初三（2024年2月12日）12点开始，24点结束。当前提示文字为测试内容】';
+let prefix = '【正式抽奖从初三（2025年1月31日）12点开始，24点结束。当前提示文字为测试内容】';
 // let prefix = '';
 
 let used = new Map();
@@ -1636,16 +1642,16 @@ let lot = function (key, word) {
         if (bonus > 1) {
             console.debug(new Date());
             console.debug(used);
-            return prefix + '恭喜您获得 ' + bonus + ' 元红包！祝您 2024 年' + randomWord(goodWords) + '!【红包口令为手工发放，请耐心等待，超过 24 小时未收到口令可再次向公众号发送任意消息】';
+            return prefix + '恭喜您获得 ' + bonus + ' 元红包！祝您 2025 年' + randomWord(goodWords) + '!【红包口令为手工发放，请耐心等待，超过 24 小时未收到口令可再次向公众号发送任意消息】';
         } else if (bonus > 0) {
             pool += parseFloat(bonus);
             console.debug(pool.toFixed(2));
-            return prefix + '恭喜您为阳光普照奖池贡献 ' + bonus + ' 元！当前奖池总金额 ' + pool.toFixed(2) + ' 元，将在活动结束后通过公众号推送支付宝口令！祝您 2024 年' + randomWord(goodWords) + '!';
+            return prefix + '恭喜您为阳光普照奖池贡献 ' + bonus + ' 元！当前奖池总金额 ' + pool.toFixed(2) + ' 元，将在活动结束后通过公众号推送支付宝口令！祝您 2025 年' + randomWord(goodWords) + '!';
         } else {
-            return prefix + '很遗憾，您未中奖，谢谢参与。祝您 2024 年' + randomWord(goodWords) + '!';
+            return prefix + '很遗憾，您未中奖，谢谢参与。祝您 2025 年' + randomWord(goodWords) + '!';
         }
     }
-    return prefix + '每人仅一次机会。祝您 2024 年' + randomWord(words) + '!【此消息内容为从大家的抽奖口令中随机生成，若出现一些奇奇怪怪的词语，切莫当真】';
+    return prefix + '每人仅一次机会。祝您 2025 年' + randomWord(words) + '!【此消息内容为从大家的抽奖口令中随机生成，若出现一些奇奇怪怪的词语，切莫当真】';
 };
 
 handler.response = (msg, fromUser) => {
