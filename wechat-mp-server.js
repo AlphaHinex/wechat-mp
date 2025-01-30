@@ -69,7 +69,7 @@ let onReq = function (req, res) {
                     };
                     handler.response(content, fromUser);
                 } else if (result && result.xml && result.xml.MsgType && result.xml.MsgType[0] === 'event') {
-                    let welcome = "欢迎关注 AlphaHinex !\r\n";
+                    let welcome = "欢迎关注 周拱壹卒 !\r\n";
                     welcome += "本公众号为 IT 技术主题公众号。\r\n";
                     welcome += "自动回复内容包括：\r\n";
                     welcome += "1. 关注时回复欢迎消息\r\n";
