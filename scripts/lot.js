@@ -2154,8 +2154,8 @@ let formalBonus = function (key, word) {
     ).toFixed(2);
 };
 
-let prefix = '【正式抽奖从初三（2025年1月31日）12点开始，24点结束。当前提示文字为测试内容】';
-// let prefix = '';
+// let prefix = '【正式抽奖从初三（2025年1月31日）12点开始，24点结束。当前提示文字为测试内容】';
+let prefix = '';
 
 let used = new Map();
 let pool = 0;
