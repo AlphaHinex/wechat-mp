@@ -54,7 +54,7 @@ let reportByUser = function(uid) {
                         });
                         userMap.set(postId, readCount);
                     });
-                    console.debug('Page ' + i + ' completed, parepare to load page ' + (i+1) );
+                    // console.debug('Page ' + i + ' completed, parepare to load page ' + (i+1) );
                     postsByPage(++i);
                 } else {
                     console.debug('User ' + uid + ' has ' + i + ' pages posts.');
